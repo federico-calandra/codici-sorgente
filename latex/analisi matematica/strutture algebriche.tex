@@ -1,0 +1,295 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    Declarations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{multicol,multirow}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{xfrac}
+\usepackage{mathrsfs}
+
+
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.2in,left=.2in,right=.2in,bottom=.2in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=.3cm,left=.7cm,right=.7cm,bottom=.3cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+\pagestyle{empty}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{-4mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{-2mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{-1mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\newcommand{\itemm}[1]{\indent - #1\\}
+\makeatother
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+% -----------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         BEGIN DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\raggedright
+\footnotesize
+
+\begin{center}
+\Large\textbf{ALGEBRA ASTRATTA}
+\end{center}
+\begin{multicols}{2}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\section{Proprietà delle operazioni}
+	\subsection{arietà}
+	\begin{tabular}{ll}
+		nullaria&costante numerica\\
+		unaria&$x \mapsto \diamond x$\\
+		binaria&$(x_1,x_2) \mapsto x_1 \diamond x_2$\\
+		n-aria&$(x_1, \ldots, x_n)\mapsto x_1 \diamond \ldots \diamond x_n$
+	\end{tabular}
+
+	%\subsection{Operazioni unarie\quad\small{\boldmath$\diamond\!:S \rightarrow S$}}
+	%\begin{tabular}{r|ll}
+	%	1&iniettività&$\diamond x=\diamond y \Rightarrow x=y$\\
+	%	2&sureittività&\\
+	%	3&biiettività&\\
+	%	4&idempotenza&$\diamond(\diamond x)=\diamond x$\\
+	%\hline
+	%\end{tabular}
+	
+	\subsection{assiomi delle operazioni binarie\quad\small{\boldmath$\diamond\!:S \times S \rightarrow S$}}
+	\begin{tabular}{r|ll}
+		0&chiusura&$x\diamond y \in S$\\
+		1&associatività&$(x \diamond y) \diamond z=x \diamond (y \diamond z)$\\
+		2&commutatività&$x \diamond y=y \diamond x \quad$\\
+		3&distributività rispetto a \scalebox{0.7}{$\square$}&$(y \,$\scalebox{0.7}{$\square$}$\, z) \diamond x = x \diamond (y \,$\scalebox{0.7}{$\square$}$\, z)=(x \diamond y) \,$\scalebox{0.7}{$\square$}$\, (x \diamond z)$\\
+		4&esistenza elemento neutro&$\exists\;\eta \in S : x \diamond \eta = \eta \diamond x = x$\\
+		5&esistenza inverso&$\exists\;\varsigma \in S : x \diamond \varsigma = \varsigma \diamond x = \eta$\\
+	\hline
+	\end{tabular}\\\;
+	 $\diamond$ è un prodotto $\Rightarrow \varsigma$ si dice reciproco\qquad
+	 $\diamond$ è una somma $\Rightarrow \varsigma$ si dice opposto\\
+	in $4$ si intende che $\diamond$ è distributiva sia a destra che a sinistra
+	
+\section{Strutture algebriche}
+
+	\subsection{mono-operazione}
+	\begin{tabular}{l|l}
+		Struttura & Proprietà di $\ast$\\
+		\hline
+		magma $(M,\ast)$ & (\checkmark\textbar\phantom{\checkmark}\textbar\phantom{\checkmark}\textbar\phantom{\checkmark}\textbar\phantom{\checkmark}\textbar\phantom{\checkmark})\\
+		gruppo $(G,\ast)$ & (\checkmark\textbar\checkmark\textbar\phantom{\checkmark}\textbar\phantom{\checkmark}\textbar\checkmark\textbar\checkmark)\\
+		gruppo abeliano $(G,\ast)$ & (\checkmark\textbar\checkmark\textbar\checkmark\textbar\phantom{\checkmark}\textbar\checkmark\textbar\checkmark)\\
+	\hline
+	\end{tabular}
+\medskip
+
+	\subsection{bi-operazione}
+	\begin{tabular}{l|ll}
+		Struttura & Proprietà di $+$ & Proprietà di $\ast$\\
+		\hline
+		anello $(A,+,\ast)$ & (\checkmark\textbar\checkmark\textbar\checkmark\textbar\phantom{\checkmark}\textbar\checkmark\textbar\checkmark) & (\checkmark\textbar\checkmark\textbar\phantom{\checkmark}\textbar\checkmark\textbar\phantom{\checkmark}\textbar\phantom{\checkmark})\\
+		anello abeliano $(A,+,\ast)$ & (\checkmark\textbar\checkmark\textbar\checkmark\textbar\phantom{\checkmark}\textbar\checkmark\textbar\checkmark) & (\checkmark\textbar\checkmark\textbar\checkmark\textbar\checkmark\textbar\phantom{\checkmark}\textbar\phantom{\checkmark})\\
+		anello unitario $(A,+,\ast)$ & (\checkmark\textbar\checkmark\textbar\checkmark\textbar\phantom{\checkmark}\textbar\checkmark\textbar\checkmark) &(\checkmark\textbar\checkmark\textbar\phantom{\checkmark}\textbar\checkmark\textbar\checkmark\textbar\phantom{\checkmark})\\
+		corpo $(C,+,\ast)$ & (\checkmark\textbar\checkmark\textbar\checkmark\textbar\phantom{\checkmark}\textbar\checkmark\textbar\checkmark) & (\checkmark\textbar\checkmark\textbar\phantom{\checkmark}\textbar\checkmark\textbar\checkmark\textbar\checkmark)\\
+		campo $\mathbb{K}\!=\!(K,+,\ast)$ & (\checkmark\textbar\checkmark\textbar\checkmark\textbar\phantom{\checkmark}\textbar\checkmark\textbar\checkmark) & (\checkmark\textbar\checkmark\textbar\checkmark\textbar\checkmark\textbar\checkmark\textbar\checkmark)\\
+	\hline
+	\end{tabular}
+\bigskip
+
+	\subsection{Più complesse}
+	\begin{tabular}{l|l}
+		Struttura & Proprietà delle operazioni\\
+	\cline{1-2}
+		\multirow{7}{*}{\begin{tabular}{@{}l}spazio vettoriale $\mathbb{V}[\mathbb{K}]=(V,+,\ast,\mathbb{K})$\\$+:V\times V\rightarrow V\quad\ast:\mathbb{K}\times V\rightarrow V$\\($+:\mathbb{K}\times\mathbb{K}\rightarrow\mathbb{K}\quad\cdot:\mathbb{K}\times\mathbb{K}\rightarrow\mathbb{K}$)\end{tabular}} 
+		& $(V,+)$ è un gruppo abeliano\\
+		& $\lambda\ast( v +  w)=\lambda\ast v + \lambda\ast w$\\
+		& $(\lambda+\mu)\ast v=\lambda\ast v + \mu\ast v$\\
+		& $(\lambda\cdot \mu)\ast v=\lambda\cdot(\mu\ast v)$\\
+		& $1\ast v= v$\\
+		& $\lambda\ast 0=0\ast v= 0$\\
+		& $-(\lambda\ast v)=(-\lambda)\ast v=\lambda\ast(- v)$\\
+	\hline
+		\multirow{3}{*}{\begin{tabular}{@{}l}spazio duale associato $(\mathbb{V}^*,+,\ast)$\\$+:\mathbb{V}^*\times\mathbb{V}^*\rightarrow\mathbb{V}^*\quad\ast:\mathbb{K}\times\mathbb{V}^*\rightarrow\mathbb{V}^*$\end{tabular}}& $\mathbb{V}^*=\{f:\mathbb{V}\rightarrow\mathbb{K}\:\vert\:f$ è una forma lineare\}\\
+		& $(f+ g)( v)=f( v)+ g( v)$\\
+		& $(\lambda\ast f)( v)=\lambda\ast f( v)$\\
+	\hline
+		\multirow{3}{*}{\begin{tabular}{@{}l}spazio affine $\mathbb{A}=(\mathbb{V},+)$\\$+:\mathbb{A}\times\mathbb{V}\rightarrow\mathbb{A}$\quad è una biiezione\end{tabular}} & $(P+ v)+ w=P+( v+ w)$\\
+		& $P+ 0=P$\\
+		& $P+ v=Q \Rightarrow  v=Q-P$\\
+	\hline
+		\multirow{3}{*}{\begin{tabular}{@{}l}spazio euclideo $\mathbb{E}=(\mathbb{A},\cdot)$\\$\cdot:\mathbb{V}\times\mathbb{V}\rightarrow\mathbb{R}\quad$è un prodotto scalare\end{tabular}} &$ v \cdot  w = \| v\| \| w\| \cos\varphi\quad \varphi=\widehat{v w}$\\
+		& $ v \cdot  w =  w \cdot  v$\\
+		& $ v\cdot$\\
+	\hline
+		\multirow{3}{*}{\begin{tabular}{@{}l}spazio normato $(\mathbb{X},\|\!\cdot\!\|)$\\$\|\!\cdot\!\|:\mathbb{X}\rightarrow\mathbb{R}^+_0$\end{tabular}} & $\|x\|\geq 0 \Leftrightarrow x=0$\\
+		& $\|\lambda x\|=|\lambda|\,\|x\|$\\
+		& $\|x+y\|\leq \|x\|+\|y\|$\\
+	\hline
+		\multirow{3}{*}{\begin{tabular}{@{}l}spazio metrico $(\mathbb{X},d)$\\$d:\mathbb{X}\times\mathbb{X}\rightarrow\mathbb{R}^+_0$\end{tabular}} & $d(x,y)= 0 \Leftrightarrow x=y$\\
+		& $d(x,y)=d(y,x)$\\
+		& $d(x,y)\leq d(x,z)+d(z,y)$\\
+	\hline
+	\end{tabular}
+
+
+	\begin{tabular}{l|l}
+	\hline\hline
+		\multirow{3}{*}{\begin{tabular}{@{}l}algebra su un insieme $(\Omega,\mathfrak{F})$\\$\mathfrak{F}\subseteq\mathcal{P}(\Omega)$\end{tabular}} & $\emptyset\in\mathfrak{F}$\\
+		& $Z\in\mathfrak{F}\Rightarrow Z^c\in\mathfrak{F}$\\
+		& $Z_1,Z_2\in\mathfrak{F}\Rightarrow Z_1\bigcup Z_2\in\mathfrak{F}$\\
+	\hline
+		\multirow{3}{*}{\begin{tabular}{@{}l}$\sigma$-algebra $(\Omega,\mathfrak{F})$\\$\mathfrak{F}\subseteq\mathcal{P}(\Omega)$\end{tabular}} & $\Omega\in\mathfrak{F}$\\
+		& $Z\in\mathfrak{F}\Rightarrow Z^c\in\mathfrak{F}$\\
+		& $Z_i\in\mathfrak{F}\Rightarrow \bigcup Z_i\in\mathfrak{F}$\\
+	\hline
+		\multirow{4}{*}{\begin{tabular}{@{}l}spazio topologico $(X,\mathcal{T})$\\$\mathcal{T}\subseteq\mathcal{P}(X)$\end{tabular}} & $\emptyset\in\mathcal{T}$\\
+		& $X\in\mathcal{T}$\\
+		& $Z_i\in\mathcal{T}\Rightarrow \bigcup Z_i \in \mathcal{T}$\\
+		& $Z_1,Z_2\in\mathcal{T}\Rightarrow Z_1\bigcap Z_2 \in \mathcal{T}$\\
+	\hline
+	\end{tabular}\bigskip
+	
+\section{Applicazioni fra strutture \boldmath$f:A\rightarrow B$}
+
+	\subsection{omomorfismo}
+	$A$ e $B$ sono strutture algebriche dello stesso tipo\\
+	$f(x\ast y)=f(x)+ f(y)$\qquad\begin{tabular}{@{}l}$\ast:A\times A\rightarrow A$\\$+:B\times B\rightarrow B$\end{tabular}\\
+	$\mathrm{Hom}(A,B)=\{f:A\rightarrow B\:\vert\:f$ è un omomorfismo$\}$\\\smallskip
+	\begin{tabular}{@{}ll}
+		\multicolumn{2}{c}{$A\neq B$}\\
+		\hline
+		iniettività & monomorfismo\\
+		suriettività & epimorfismo\\
+		biiettività & isomorfismo\\
+		\hline
+	\end{tabular}
+	\quad
+	\begin{tabular}{@{}ll}
+		\multicolumn{2}{c}{$A=B$}\\
+	\hline
+		\qquad -- & endomorfismo\\
+		biiettività & automorfismo\\
+		&\\
+		\hline
+	\end{tabular}\\\smallskip
+	
+		\subsection{applicazione lineare}
+		$A=\mathbb{V}[\mathbb{K}],B=\mathbb{W}[\mathbb{K}]\;\;\Rightarrow\;\; T:\mathbb{V}\rightarrow\mathbb{W}$ si chiama trasformazione lineare:\\
+		$L( v+ w)=L( v)+ L( w)\qquad L(\lambda v)=\lambda L( v)\qquad L( 0_\mathbb{V})= 0_\mathbb{W}$\\
+		Hom$(\mathbb{V},\mathbb{W})$ è uno spazio vettoriale\\\smallskip
+		Date due basi $\mathcal{B}_\mathbb{V}=\{ a_1,\ldots, a_n\}$ e $\mathcal{B}_\mathbb{W}=\{ b_1,\ldots, b_m\}$ valgono le seguenti:\\
+		\itemm{$\forall v\in\mathbb{V}\;\;\exists!\:(\alpha_1,\ldots,\alpha_n)\in\mathbb{R}^n$\;\;t.c.\;\;$ v\overset{1}{=}\alpha_i a_i\quad\Longrightarrow\;(\alpha_1,\ldots,\alpha_n)=[ v]_{\mathcal{B}_\mathbb{V}}$}
+		\itemm{$\forall  w\in\mathbb{W}\;\;\exists!\:(\beta_1,\ldots,\beta_m)\in\mathbb{R}^m$\;\;t.c.\;\;$ w\overset{2}{=} \beta_j b_j\quad\Longrightarrow\;(\beta_1,\ldots,\beta_m)=[ w]_{\mathcal{B}_\mathbb{W}}$}
+		\itemm{$L( v)\overset{1}{=}\alpha_i L( a_i)$\;\;con\;\;$L( a_i)\overset{2}{=}\alpha_{ij} b_j$}
+		\itemm{$a_{ij}=([L( a_i)]_{\mathcal{B}_\mathbb{W}})_j\Rightarrow\mathscr{M}_{\mathcal{B}_\mathbb{V}}^{\mathcal{B}_\mathbb{W}}[L]=(a_{ij})$}\smallskip
+		\begin{tabular}{@{}l}Ker$(L)=\{ v\in\mathbb{V}\:\vert\:L( v)= 0_\mathbb{W}\}$\\Im$(L)=\{L( v)\in \mathbb{W}\:\vert\: v\in \mathbb{V}\}$\end{tabular}$\Rightarrow\;\begin{cases}$Ker$(L)=\{ 0_\mathbb{V}\}\Rightarrow L$ è un monomorfismo$\\ $Im$(L)=\mathbb{W}\Rightarrow L$ è un epimorfismo$\end{cases}$\\
+		dim Ker$(L)+\mbox{}$dim Im$(L)=\mbox{}$dim$\mbox{ }\mathbb{V}\quad\Longrightarrow\;L$ è un isomorfismo $\begin{cases}\Leftrightarrow$ dim$\mbox{ }\mathbb{V}=$ dim$\mbox{ }\mathbb{W}\\\Rightarrow\mathbb{V}\simeq\mathbb{W}\end{cases}$
+		
+	\subsection{omeomorfismo}
+	$A$ e $B$ sono spazi topologici\\
+	$f$ è una funzione continua e biiettiva con $f^{-1}$ continua\\
+	Dato $Z\subset X$, se $Z$ è aperto allora $f(Z)$ è aperto\\
+	$f$ è un omeomormismo tra $A$ e $B \Rightarrow A \approx B$
+	
+	\subsection{diffeomorfismo}
+	
+\vfill\null		
+\columnbreak	
+	
+	\subsection{altre applicazioni}
+		\subsubsection{forma lineare}
+		$f:\mathbb{V}[\mathbb{K}]\rightarrow \mathbb{K}$\quad è una forma lineare se valgono\\
+		\itemm{$f( v +  w)=f( v)+f( w)$}
+		\itemm{$f(\lambda v)=\lambda\,f( v)$}
+		
+		\subsubsection{forma bilineare}
+			$g:\mathbb{V}[\mathbb{K}]\times\mathbb{W}[\mathbb{K}]\rightarrow \mathbb{K}$\quad è una forma bilineare se valgono\\
+		\itemm{$g( v_1 +  v_2, w)=g( v_1, w)+g( v_2, w)$}
+		\itemm{$g( v, w_1 +  w_2)=g( v, w_1)+g( v, w_2)$}
+		\itemm{$g(\lambda v, w)=g( v,\lambda w)=\lambda\, g( v, w)$}\smallskip
+		Data un base $\mathcal{B}_\mathbb{V}=( b_1,\ldots, b_n)$ di $\mathbb{V}$, valgono le seguenti\\
+		\itemm{$g_{ij}=g( b_i, b_j)\Rightarrow\mathscr{M}_{\mathcal{B}_\mathbb{V}}[g]=(g_{ij})$}
+		\itemm{$g( v, w)={ v}^{\,T}\cdot\mathscr{M}_{\mathcal{B}_\mathbb{V}}[g]\, w=\sum b_{ij}\,v_i\,w_j \quad\forall  v \in\mathbb{V}, w \in\mathbb{W}$}\smallskip
+		\itemm{$g$ è simmetrica $\Leftrightarrow g( v, w)=g( w, v)\Leftrightarrow \mathscr{M}_{\mathcal{B}_\mathbb{V}}[g]$ è simmetrica}
+		\itemm{$g$ è antisimmetrica $\Leftrightarrow g( v, w)=-g( w, v)\Leftrightarrow \mathscr{M}_{\mathcal{B}_\mathbb{V}}[g]$ è antisimmetrica}
+		\itemm{$g$ è degenere $\Leftrightarrow
+		\begin{cases}
+			\exists\: v \neq  0_\mathbb{V}$ t.c. $b( v, w)=0\quad\forall  w \in\mathbb{W}\\
+			\exists\: w \neq  0_\mathbb{W}$ t.c. $b( v, w)=0\quad\forall  v \in\mathbb{V}\\
+			\det(\mathscr{M}_{\mathcal{B}_\mathbb{V}}[g])=0\quad \forall\:\mathcal{B}_\mathbb{V}
+		\end{cases}$}
+		
+		\subsubsection{forma quadratica associata}
+		$q:\mathbb{V}[\mathbb{K}]\rightarrow\mathbb{K}$\quad è la forma quadratica associata ad una forma\\
+		bilineare $g:\mathbb{V}[\mathbb{K}]\times\mathbb{V}[\mathbb{K}]\rightarrow \mathbb{K}$ se $q( v)=g( v, v)$\\\smallskip
+		??????????????????????????????????????????\\
+		Data un base $\mathcal{B}_\mathbb{V}=( b_1,\ldots, b_n)$, \ $q$ si rappresenta
+		???? come matrice $\mathscr{M}_{\mathcal{B}_\mathbb{V}}[g]=(g_{ij})$ \ dove $g_{ij}=g( b_i, b_j)$????\\
+		$q( v)={ v}^{\,T}\cdot\mathscr{M}_{\mathcal{B}_\mathbb{V}}[?]\, v=\sum \mbox{?}_{ij}\,v_i\,v_j \quad\forall  v \in\mathbb{V}$\\
+		Identità di polarizzazione\quad$g( v, w)=\frac12[q( v+ w)-q( v)-q( w)]$
+		
+		\subsubsection{prodotto interno (o forma sesquilineare)}
+		$(\cdot,\cdot):\mathbb{V}[\mathbb{C}]\times\mathbb{V}[\mathbb{C}]\rightarrow \mathbb{C}$\quad è una forma sesquilineare se valgono\\
+		\itemm{$(v, w)=(w,v)^*$}
+		\itemm{$(v_1+v_2, w)=(v_1, w)+(v_2, w)$}
+		\itemm{$(\lambda v, u)=\lambda(v, u)$}\smallskip
+		solitamente si assume $(v,w)=\sum_iv_i^*w_i$
+		
+		\subsubsection{prodotto scalare}
+		$\langle\cdot,\cdot\rangle:\mathbb{V}[\mathbb{R}]\times\mathbb{V}[\mathbb{R}]\rightarrow\mathbb{R}$ è un prodotto scalare se valgono\\
+		\itemm{$\langle\cdot,\cdot\rangle$ è una forma bilineare simmetrica}
+		\itemm{$\langle v, v\,\rangle > 0\quad\forall\: v \neq  0$}
+		\itemm{$\langle v, 0\,\rangle = 0$}\smallskip
+		solitamente si assume $\langle v, w\rangle=\sum_iv_iw_i$\\
+		il prodotto euclideo è $
+		v \cdot  w=\| v\|\,\| w\|\,\cos\varphi$
+				
+		\subsubsection{applicazione e forma multilineare}
+		$F:\mathbb{V}_1[\mathbb{K}]\times\ldots\times\mathbb{V}_m[\mathbb{K}] \rightarrow \mathbb{W}[\mathbb{K}]$\quad è una applicazione multilineare se valgono\\
+		\itemm{$F( v_1,\ldots,{ v_i}^{\,\prime}+{ v_i}^{\,\prime\prime},\ldots, v_m)=F( v_1,\ldots,{ v_i}^{\,\prime},\ldots, v_m)+F( v_1,\ldots,{ v_i}^{\,\prime\prime},\ldots, v_m)$}
+		\itemm{$F( v_1,\ldots,\lambda  v_i,\ldots, v_m)=\lambda\,F( v_1,\ldots, v_i,\ldots, v_m)$}\smallskip
+		$\mathbb{W}=\mathbb{K}\;\Longrightarrow\quad \phi:\mathbb{V}_1[\mathbb{K}]\times\ldots\times\mathbb{V}_m[\mathbb{K}] \rightarrow \mathbb{K}$ è una forma multilineare\\
+		$\mathscr{L}^m\equiv\mathscr{L}^m(\mathbb{V}_1\times\ldots\times\mathbb{V}_m,\mathbb{K})=\{\phi:\mathbb{V}_1\times\ldots\times\mathbb{V}_m \rightarrow \mathbb{K}\:|\:\phi$ è una forma multilineare$\}$
+		
+\section{Norma, metrica e completezza}
+La norma $\|\cdot\|$ introduce una nozione di lunghezza. La metrica $d(\cdot,\cdot)$ introduce una nozione di distanza.\\
+Tramite un prodotto interno si può definire una norma $\|x\|=\sqrt{(x,x)}$. Si dice che $\|\cdot\|$ è indotta da $(\cdot,\cdot)$, si scrive $(\cdot,\cdot)\rightsquigarrow\|\cdot\|$ e si indica con $\|\cdot\|_{(\cdot,\cdot)}$. Se l'induzione è sottintesa allora il pedice si omette.\\
+Tramite un una norma si può definire una metrica $d(x,y)=\|x-y\|$. Si dice che $d(\cdot,\cdot)$ è indotta da $\|\cdot\|$, si scrive $\|\cdot\|\rightsquigarrow d(\cdot,\cdot)$ e si indica con $d_{\|\cdot\|}(\cdot,\cdot)$. Se l'induzione è sottintesa allora il pedice si omette.\\
+Da questo segue che un prodotto interno induce una metrica $d(x,y)=\sqrt{(x-y,x-y)}$
+
+Se $(\mathbb{X},\|\cdot\|)$ è completo allora si chiama spazio di Banach.\\
+$(\mathbb{X},(\cdot,\cdot))$ si dice completo (spazio di Hilbert) se $(\mathbb{X},d_{(\cdot,\cdot)})$ è completo.
+
+%\section{\underline{\smash{Spazio duale, tensore e cambio di riferimento}}}
+%	\subsection{Spazio duale}
+%	$\mathbb{V}[\mathbb{K}]$ spazio vettoriale,\quad$\mathbb{V}^*=\mathscr{L}^m$ spazio duale associato\\
+%	$ v \in \mathbb{V}$ è un vettore\quad $ v \in \mathbb{V}$ è un vettore
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%       END DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vfill\null
+%\columnbreak
+\end{multicols}
+\end{document}

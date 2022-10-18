@@ -1,0 +1,186 @@
+\documentclass[10pt,a4paper,landscape]{article}
+
+%% PACCHETTI AGGIUNTIVI
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+%\usepackage{bm}
+\usepackage{calc}
+%\usepackage[inline]{enumitem}
+%\usepackage{ifthen}
+%\usepackage[utf8]{inputenc}
+\usepackage[landscape]{geometry}
+%\usepackage{graphicx}
+%\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{mathrsfs}
+\usepackage{multicol,multirow}
+%\usepackage{subcaption}
+%\usepackage{tabularx}
+%\usepackage[absolute]{textpos}
+%\usepackage{titlesec}
+%\usepackage{wrapfig}
+%\usepackage{xfrac}
+
+
+%% GEOMETRIA
+\geometry{top=1cm,bottom=1cm,left=.7cm,right=.7cm}
+
+%%	STILE
+\pagestyle{empty}
+%\raggedright
+
+%%	HEADINGS
+%%		Numerazione
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{3pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+%%		Formattazione capitoli
+%\titleformat{\chapter}[hang]{\normalfont\huge\bfseries}{\thechapter\quad}{0cm}{}  	% hang, block, display, runin
+
+%%		Formattazione headings \titlesec {spazio-sx}{spazio-prima}{spazio-dopo}
+%\titlespacing*{\section}{-1.5ex}{1ex}{0ex}
+%\titlespacing*{\subsection}{0ex}{.3ex}{0ex}
+%\titlespacing*{\subsubsection}{0ex}{0ex}{0ex}
+
+%%		Altra formattazione
+%\makeatletter
+%\renewcommand{\section}{\@startsection{section}{1}{-3mm}{2ex}{.1ex}{\normalfont\large\bfseries}}
+%\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}{.5ex}{.1ex}{\normalfont\normalsize\bfseries}}
+%\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{1mm}{.1ex}{.1ex}{\normalfont\small\bfseries}}
+%\makeatother
+
+%%	DEFINIZIONE COMANDI
+\newcommand{\de}{\mathrm d}
+\newcommand{\fracd}[2]{\frac{\de #1}{\de #2}}
+\newcommand{\fracp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fracpq}[2]{\frac{\partial^2 #1}{{\partial #2}^2}}
+\newcommand{\fracpp}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+\newcommand{\grad}[1]{\text{grad}\,#1}
+\newcommand{\dive}[1]{\text{div}\,#1}
+\newcommand{\rot}[1]{\text{rot}\,#1}
+\newcommand{\vers}{\mathop{\text{vers}}}
+\newcommand{\itemm}[1]{\indent - #1\\}
+\newcommand{\tr}[1]{\text{tr}\,#1}
+\newcommand{\sym}[1]{\text{sym}\,#1}
+\newcommand{\skw}[1]{\text{skw}\,#1}
+\newcommand{\sz}[1]{\scriptsize #1\normalsize}
+\newcommand{\mach}{\text{Ma}}
+
+
+\begin{document}
+\begin{multicols}{3}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\raggedright
+\footnotesize
+
+\section{MECCANICA NEWTONIANA}
+	\subsection{momento angolare di un sistema di $N$ punti}
+	$\vec M_Q=\sum_i (\vec x_i-\vec x_Q)\times m_i\vec v_i$\\
+	$\phantom{M_Q}=(\vec x_G-\vec x_Q)\times m\vec v_G+\sum_i(\vec x_j-\vec x_G)\times m_i(\vec v_j-\vec v_G)$\\
+
+	\subsection{momento risultante di un sistema di $N$ punti}
+	$\vec N_Q=\sum_i (\vec x_i-\vec x_Q)\times \vec F_i$\\
+	$\phantom{N_Q}=(\vec x_G-\vec x_Q)\times \vec R+\sum_i (\vec x_i-\vec x_G)\times \vec F_i$\\
+	$\phantom{N_Q}=(\vec x_G-\vec x_Q)\times \vec R+\sum_i (\vec x_i-\vec x_G)\times (\vec F_i-m_i\vec a_G)$\\
+
+	\subsection{energia cinetica di un sistema di $N$ punti}
+	$T=\frac1 2 \sum_i m_i |\vec v_i|^2$\\
+	$\phantom{T}=\frac1 2 m |\vec v_G|^2+\frac1 2 \sum_i m_i|\vec v_i-\vec v_G|^2$\\
+
+	\subsection{equazioni cardinali per un sistema di $N$ punti}
+	$\vec R^{\tiny{(\!E)}}=m\vec a_G$\\
+	$\vec N_Q^{\tiny{(\!E)}}= \frac{\mathrm d}{\mathrm d t}\vec M_Q+\vec v_Q\times m\vec v_G$\\
+
+	\subsection{vincolo di rigidità}
+	$\rho_{ij}=\|\vec r_{ij}\|=c_{ij}$\\
+
+riferimento solidale:\quad$\Sigma'=O'\hat e_1' \hat e_2' \hat e_3'$ tale che $(P_j-O')$ sono costanti\\
+tutti i riferimenti solidali hanno la stessa velocità angolare\\
+
+	\subsection{campo delle posizioni}
+	$\vec x_i=\vec x_{O'}+R\vec x_i^{\,\prime}$\\
+
+	\subsection{campo delle velocità}
+	$\vec v_i=\vec v_{O'}+\vec\omega\times\vec x_i^{\,\prime}$\\
+	$\vec v_P\cdot\hat e_\rho=0$\quad e \quad$\vec v_P\cdot\omega=\vec v_Q\cdot\omega\qquad\forall P,Q\in\mathfrak{B}$\\
+	
+	\subsection{campo delle accelerazioni}
+
+	\subsection{moto piano}
+	$\vec v_i\cdot\omega=0$\\
+
+	\subsection{moto su traiettoria nota}
+	$\vec x=\vec\gamma (s)$\\
+	$\vec v=\dot s\:\vec\gamma^{\,\prime}(s)=\dot s\:\hat\tau(s)$\\
+	$\vec a=\ddot s\:\hat\tau(s)+\dot s^2\kappa(s)\:\hat\eta(s)$\\
+
+	\subsection{momento angolare di un sistema rigido}
+	$\vec M_Q=\mathbb{I}_Q(\vec \omega)+m(\vec x_B-\vec x_Q)\times[\vec v_{O^\prime}+\vec \omega \times (\vec x_Q-\vec x_{O^\prime})]$\\
+	$O^{\prime}\!\equiv\!Q\quad\vec M_Q=\mathbb{I}_Q(\vec \omega)+m(\vec x_G-\vec x_Q)\times \vec v_Q$\\
+	$Q\equiv\!G\quad\vec M_G=\mathbb{I}_G(\vec \omega)$\\
+
+	\subsection{energia cinetica}
+	$T=\frac1 2 m |\vec v_{O^\prime}|^2+\frac1 2 \vec \omega \cdot \mathbb{I}_{O^\prime}(\omega)+m\vec \omega \cdot (\vec x_G-\vec x_{O^\prime})\times \vec v_{O^\prime}$\\
+	$\vec v_{O^\prime}\!=\vec 0\quad T=\frac 1 2 \vec \omega \cdot \mathbb{I}_{O^\prime}(\vec\omega)$\\
+	$O^{\prime}\!\equiv\!G\quad\:T=\frac1 2 m |\vec v_G|^2+\frac1 2\vec \omega \cdot \mathbb{I}_G(\vec\omega)$\\
+
+	\subsection{tensore di inerzia}
+	$\mathfrak{I}_Q(\vec u)=\sum_j m_j(P_j-Q)\times[\vec u \times (P_j-Q)]$\\
+	$\mathfrak{I}_Q(\vec u)=\mathfrak{I}_G(\vec u)+m(G-Q)\times[\vec u \times (G-Q)]$\\
+	$\vec v\cdot\mathfrak{I}_Q(\vec u)=\vec u\cdot\mathfrak{I}_Q(\vec v)=\sum_j m_j[\vec u \times (P_j-Q)]\cdot[\vec v \times (P_j-Q)]$\\
+	$\vec u\cdot\mathfrak{I}_Q(\vec u)=\sum_j m_j\|\vec u \times (P_j-Q)\|^2$\\
+
+	\subsection{momento di inerzia assiale}
+	$I_{Q\hat e}=\hat e \cdot \mathfrak{I}_Q(\hat e)=\sum_j m_j\|\hat e \times (P_j-Q)\|^2$\\
+	$Q'\in Q\hat e \Longrightarrow I_{Q'\hat e}=I_{Q\hat e}$\\
+
+	\subsection{Huygens-Steiner}
+	$I_{B\hat e}=\underset{Q\in \mathbb{E}^3}{\min}I_{Q\hat e}\quad I_{Q\hat e}=I_{B\hat e}+m\|\hat e \times (B-Q)\|^2$\\
+
+	\subsection{matrice di inerzia}
+	$I_Q=(I_{ij})\qquad I_{ij}=\hat e_i \cdot \mathfrak{I}_Q(\hat e_j)$\\
+	diagonalizzabile nella base principale di inerzia $I_Q=\Delta(J_1,J_2,J_3)$\\
+
+	\subsection{momento angolare}
+	$\vec M_Q=\mathfrak{I}_Q(\vec \omega)+m(B-Q) \times [\vec v_{O'}+\omega \times (Q-O')]$\\
+	$O'\equiv Q \Longrightarrow \vec M_Q=\mathfrak{I}_Q(\vec \omega)+m(B-Q) \times \vec v_Q$\\
+	$\vec v_Q=\vec 0$ oppure $Q\equiv B \Longrightarrow \vec M_Q=\mathfrak{I}_Q(\vec \omega)$\\
+
+	\subsection{energia cinetica}
+	$T=\frac12 m \|v_{O'}\|^2+\frac12 \vec \omega \cdot \mathfrak{I}_{O'}(\vec \omega)+m \omega \cdot (B-O') \times \vec v_{O'}$\\
+	$O' \equiv B \Longrightarrow T=\frac12 m \|v_B\|^2+\frac12 \vec \omega \cdot \mathfrak{I}_B(\vec \omega)$
+\vfill\null
+\columnbreak
+
+\section{MECCANICA LAGRANGIANA}
+$T(\mathbf{q},\dot{\mathbf{q}},t)=\frac 1 2 \mathbf{q}\cdot A(\mathbf{q})\mathbf{q}+B(\mathbf{q},t)\mathbf{q}+\mathbf{c}(\mathbf{q},t)=T_2+T_1+T_0$\\
+$V(\mathbf{q},\mathbf{q},t)=\mathbf{a}(\mathbf{q})\dot{\mathbf{q}}+V_0(\mathbf{q},t)=V_1+V_0$\\
+$L(\mathbf{q},\dot{\mathbf{q}},t)=T(\mathbf{q},\dot{\mathbf{q}},t)-V(\mathbf{q},\dot{\mathbf{q}},t)$\\
+$\frac{\mathrm{d}}{dt}\frac{\partial T}{\partial\dot{\mathbf{q}}}(\mathbf{q},\dot{\mathbf{q}},t)-\frac{\partial T}{\partial \mathbf{q}}(\mathbf{q},\dot{\mathbf{q}},t)=\mathbf{Q}(\mathbf{q},\dot{\mathbf{q}},t)$\\
+$\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L}{\partial\dot{\mathbf{q}}}(\mathbf{q},\dot{\mathbf{q}},t)-\frac{\partial L}{\partial \mathbf{q}}(\mathbf{q},\dot{\mathbf{q}},t)=0$\\
+$Q_h(\mathbf{q},\dot{\mathbf{q}},t)=\sum_j(\frac{\partial a_h}{\partial q_j}-\frac{\partial a_j}{\partial q_h})\dot q_h+\frac{\partial a_h}{\partial t}-\frac{\partial V_0}{\partial q_h}$
+
+\section{ASPETTI ENERGETICI}
+\subsubsection{Lavoro}
+$\mathscr L_{A \to B}^\gamma (\mathbf F) = \int_A^B \mathbf F \cdot \de\mathbf s$\\
+$\mathscr L > 0$ se è fatto dal sistema sull'ambiente\\
+$\mathscr L < 0$ se è fatto dall'ambiente sul sistema\\
+
+\subsubsection{Energia potenziale}
+Sono equivalenti \begin{enumerate}
+	\item $\forall i,j \quad \mathscr L_{A \to B}^{\gamma_i} (\mathbf F) = \mathscr L_{A \to B}^{\gamma_j} (\mathbf F)$
+\item $\oint \mathbf F \cdot \de\mathbf s = 0$
+	\item $\exists U : \mathscr L_{A \to B}^\gamma (\mathbf F) = U(A) - U(B)$
+	\item $\mathbf F = -\nabla U$
+	\item $\rot\mathbf F = 0$\\
+\end{enumerate}
+$U_O(P) = -\int_O^P \mathbf F \cdot \de\mathbf s$
+
+\subsubsection{Teorema dell'energia cinetica}
+$\mathscr L_{A \to B}^\gamma (\mathbf F) = \int_A^B \mathbf{\dot p} \cdot \de\mathbf s$
+
+\end{multicols}
+\end{document}

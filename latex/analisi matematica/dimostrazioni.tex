@@ -1,0 +1,84 @@
+\documentclass[10pt,a4paper]{article}
+
+%% PACCHETTI AGGIUNTIVI
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+%\usepackage{bm}
+\usepackage{calc}
+%\usepackage[inline]{enumitem}
+%\usepackage{ifthen}
+%\usepackage[utf8]{inputenc}
+\usepackage[portrait]{geometry}
+%\usepackage{graphicx}
+%\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{mathrsfs}
+%\usepackage{multicol,multirow}
+%\usepackage{subcaption}
+%\usepackage{tabularx}
+%\usepackage[absolute]{textpos}
+%\usepackage{titlesec}
+%\usepackage{wrapfig}
+%\usepackage{xfrac}
+
+
+%% GEOMETRIA
+\geometry{top=1cm,bottom=1cm,left=.7cm,right=.7cm}
+	
+%%	STILE
+\pagestyle{empty}
+%\raggedright
+
+%%	HEADINGS
+%%		Numerazione
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{3pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+%%		Formattazione capitoli
+%\titleformat{\chapter}[hang]{\normalfont\huge\bfseries}{\thechapter\quad}{0cm}{}  	% hang, block, display, runin
+
+%%		Formattazione headings \titlesec {spazio-sx}{spazio-prima}{spazio-dopo}
+%\titlespacing*{\section}{-1.5ex}{1ex}{0ex}
+%\titlespacing*{\subsection}{0ex}{.3ex}{0ex}
+%\titlespacing*{\subsubsection}{0ex}{0ex}{0ex}
+
+%%		Altra formattazione
+%\makeatletter
+%\renewcommand{\section}{\@startsection{section}{1}{-3mm}{2ex}{.1ex}{\normalfont\large\bfseries}}
+%\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}{.5ex}{.1ex}{\normalfont\normalsize\bfseries}}
+%\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{1mm}{.1ex}{.1ex}{\normalfont\small\bfseries}}
+%\makeatother
+
+%%	DEFINIZIONE COMANDI
+\newcommand{\de}{\mathrm d}
+\newcommand{\fracd}[2]{\frac{\de #1}{\de #2}}
+\newcommand{\fracp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fracpq}[2]{\frac{\partial^2 #1}{{\partial #2}^2}}
+\newcommand{\fracpp}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+\newcommand{\grad}[1]{\text{grad}\,#1}
+\newcommand{\dive}[1]{\text{div}\,#1}
+\newcommand{\rot}[1]{\text{rot}\,#1}
+\newcommand{\vers}{\mathop{\text{vers}}}
+\newcommand{\itemm}[1]{\indent - #1\\}
+\newcommand{\tr}[1]{\text{tr}\,#1}
+\newcommand{\sym}[1]{\text{sym}\,#1}
+\newcommand{\skw}[1]{\text{skw}\,#1}
+\newcommand{\sz}[1]{\scriptsize #1\normalsize}
+\newcommand{\mach}{\text{Ma}}
+
+
+\begin{document}
+%\tableofcontents\newpage
+\subsection{Il limite preserva le operazioni algebriche}
+$f_1 \longrightarrow L_1$ e $f_2 \longrightarrow L_2$ per $x \longrightarrow x_0 \Longrightarrow$ $f_1+f_2 \longrightarrow L_1+L_2$\\
+Dimostrazione: $\forall \epsilon\;\exists \delta_1,\delta_2$ tale che $|x-x_0|<\delta_1 \Rightarrow |f_1(x)-L_1|<\epsilon$ e $|x-x_0|>\delta_2 \Rightarrow |f_2(x)-L_2|<\epsilon$. Se prendo $\delta=\min\{\delta_1,\delta_2\}$ allora $|x-x_0|<\delta$ implica sia $|f_1(x)-L_1|<\epsilon$ che $ |f_2(x)-L_2|<\epsilon$. Allora sommando membro a membro $|f_1-L_1| + |f_2-L_2|<2\epsilon$ e per la disuguaglianza triangolare $|f_1+f_2-L_1-L_2|<2\epsilon$ da cui la tesi.\\
+
+$f_1 \longrightarrow L_1$ e $f_2 \longrightarrow L_2$ per $x \longrightarrow x_0 \Longrightarrow f_1 f_2 \longrightarrow L_1 L_2$\\
+
+$f_1 \longrightarrow L_1$ e $f_2 \longrightarrow L_2$ per $x \longrightarrow x_0 \Longrightarrow \frac{f_1}{f_2} \longrightarrow \frac{L_1} {L_2}$
+
+\subsection{Teorema della permanenza del segno}
+ $\lim_{x\to x_0} f(x)>0 \Rightarrow \exists B(x_0)$ in cui $\forall x\in B(x_0)$ si ha $f(x)>0$\\
+ Dimostrazione: sia $L=\lim_{x\to x_0} f(x)$ e scelgo $\epsilon<L/2$. Per ipotesi $\exists \delta>0$ tale che $|x-x_0|<\delta \Rightarrow |f(x)-L|<L/2$. Ma $|f(x)-L|<L/2$ vuol dire $L-L/2 < f(x) < L+L/2$. Dato che $L>0$, dalla prima disuguaglianza segue $f(x)>L/2>0$
+ 
+ 
+\end{document}

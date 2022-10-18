@@ -1,0 +1,85 @@
+\documentclass[11pt,a4paper]{article}
+
+
+%% PACCHETTI AGGIUNTIVI
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+%\usepackage{bm}
+%\usepackage{calc}
+%\usepackage[inline]{enumitem}
+%\usepackage[utf8]{inputenc}
+\usepackage[portrait]{geometry}
+%\usepackage{graphicx}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=black]{hyperref}
+%\usepackage{mathrsfs}
+%\usepackage{multicol,multirow}
+%\usepackage{pdflscape}
+%\usepackage{subcaption}
+%\usepackage{tabularx}
+%\usepackage{tikz}
+%\usetikzlibrary{(comma-separated)}
+%\usepackage{stanli}
+%\usepackage[absolute]{textpos}
+\usepackage{titlesec}
+%\usepackage{wrapfig}
+%\usepackage{xfrac}
+
+
+%% FORMATTAZIONE HEADINGS
+%% Capitoli
+%\titleformat{\chapter}[hang]{\normalfont\huge\bfseries}{\thechapter\quad}{0cm}{}  		% hang, block, display, runin
+%\titlespacing*{\chapter}{0ex}{0ex}{0ex}			% {comando}{spazio-sx}{spazio-prima}{spazio-dopo}
+%\setcounter{chapter}{0}							% profondità di numerazione
+
+%% Sezioni
+%\titlespacing*{\section}{0ex}{0ex}{0ex}			% {comando}{spazio-sx}{spazio-prima}{spazio-dopo}
+%\setcounter{secnumdepth}{0}						% profondità di numerazione
+%\setcounter{section}{-1}  %# -1:start at 0
+
+%% Sottosezioni
+%\titlespacing*{\subsection}{0ex}{0ex}{0ex}			% {comando}{spazio-sx}{spazio-prima}{spazio-dopo}
+%\titlespacing*{\subsubsection}{0ex}{0ex}{0ex}		% {comando}{spazio-sx}{spazio-prima}{spazio-dopo}
+
+%% Paragrafi (?)
+%\setlength{\parindent}{3pt}
+%\setlength{\parskip}{0pt plus 0.5ex}
+
+
+%% GEOMETRIA
+\geometry{top=1cm,bottom=1cm,left=.7cm,right=.7cm}
+
+
+%%	STILE
+\pagestyle{empty}
+
+
+%% SPAZIATURE E ALTRO
+%\setlength{\parindent}{0pt}		% indentazione paragrafo
+%\setlength{\parskip}{0pt}			% spazio verticale fra paragarfi
+%\hypersetup{linktoc=all}			% da attivare con creazione indice
+%\pagestyle{empty}					% formato numero pagina
+
+
+%% DEFINIZIONE COMANDI
+\newcommand{\de}{\mathrm d}
+\newcommand{\fracd}[2]{\frac{\de #1}{\de #2}}
+\newcommand{\fracp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fracpq}[2]{\frac{\partial^2 #1}{{\partial #2}^2}}
+\newcommand{\fracpp}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+\newcommand{\dive}[1]{\text{div}\,#1}
+\newcommand{\rot}[1]{\text{rot}\,#1}
+\newcommand{\tr}[1]{\text{tr}\,#1}
+\newcommand{\sz}[1]{\scriptsize #1\normalsize}
+\newcommand{\ul}[1]{\underline{\smash{#1}}}
+\newcommand{\mach}{\text{Ma}}
+\newcommand{\unabla}{\utilde\nabla}
+
+
+
+\begin{document}
+
+Le variabili vecchie sono $(x^1, \ldots, x^n)$. Il diffeomorfismo $\Psi$ le trasforma in $(z^1, \ldots, z^n)$ cioè ho $n$ equazioni $x = x(z)$.\\
+Una curva parametrica $t \mapsto z(t)$ nelle vecchie coordinate è $t \mapsto h(t) = x(z(t))$.\\
+Il vettore tangente è $(\fracd{h^1}{t}, \ldots, \fracd{h^n}{t}) = (\fracp{x^1}{z^\alpha} \fracd{z^\alpha}t, \ldots, \fracp{x^n}{z^\alpha} \fracd{z^\alpha}t)$.\\
+La $h$-esima componente si trasforma secondo la legge $\xi^h = \fracp{x^h}{z^\alpha} \eta^\alpha$ ovvero $\xi = J \eta$
+
+\end{document}

@@ -1,0 +1,80 @@
+\documentclass[10pt,a4paper]{article}
+
+%% PACCHETTI AGGIUNTIVI
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+%\usepackage{bm}
+\usepackage{calc}
+%\usepackage[inline]{enumitem}
+%\usepackage{ifthen}
+%\usepackage[utf8]{inputenc}
+\usepackage[portrait]{geometry}
+%\usepackage{graphicx}
+%\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{mathrsfs}
+%\usepackage{multicol,multirow}
+%\usepackage{subcaption}
+%\usepackage{tabularx}
+%\usepackage[absolute]{textpos}
+%\usepackage{titlesec}
+%\usepackage{wrapfig}
+%\usepackage{xfrac}
+
+
+%% GEOMETRIA
+\geometry{top=1cm,bottom=1cm,left=.7cm,right=.7cm}
+
+%%	STILE
+\pagestyle{empty}
+%\raggedright
+
+%%	HEADINGS
+%%		Numerazione
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{3pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+%%		Formattazione capitoli
+%\titleformat{\chapter}[hang]{\normalfont\huge\bfseries}{\thechapter\quad}{0cm}{}  	% hang, block, display, runin
+
+%%		Formattazione headings \titlesec {spazio-sx}{spazio-prima}{spazio-dopo}
+%\titlespacing*{\section}{-1.5ex}{1ex}{0ex}
+%\titlespacing*{\subsection}{0ex}{.3ex}{0ex}
+%\titlespacing*{\subsubsection}{0ex}{0ex}{0ex}
+
+%%		Altra formattazione
+%\makeatletter
+%\renewcommand{\section}{\@startsection{section}{1}{-3mm}{2ex}{.1ex}{\normalfont\large\bfseries}}
+%\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}{.5ex}{.1ex}{\normalfont\normalsize\bfseries}}
+%\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{1mm}{.1ex}{.1ex}{\normalfont\small\bfseries}}
+%\makeatother
+
+%%	DEFINIZIONE COMANDI
+\newcommand{\de}{\mathrm d}
+\newcommand{\fracd}[2]{\frac{\de #1}{\de #2}}
+\newcommand{\fracp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fracpq}[2]{\frac{\partial^2 #1}{{\partial #2}^2}}
+\newcommand{\fracpp}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+\newcommand{\grad}[1]{\text{grad}\,#1}
+\newcommand{\dive}[1]{\text{div}\,#1}
+\newcommand{\rot}[1]{\text{rot}\,#1}
+\newcommand{\vers}{\mathop{\text{vers}}}
+\newcommand{\itemm}[1]{\indent - #1\\}
+\newcommand{\tr}[1]{\text{tr}\,#1}
+\newcommand{\sym}[1]{\text{sym}\,#1}
+\newcommand{\skw}[1]{\text{skw}\,#1}
+\newcommand{\sz}[1]{\scriptsize #1\normalsize}
+\newcommand{\mach}{\text{Ma}}
+
+
+\begin{document}
+	%\tableofcontents\newpage
+	\section{Calcolo delle variazioni}
+	Considero $f=f(x,y,\dot y)$ definita su una traiettoria $y=y(x)$ con $x\in[x_1,x_2]$. Definisco l'integrale $J=\int_{x_1}^{x_2}f(x,y,\dot y)\de x$. Il problema è quello di trovare un cammino $y(x)$ lungo il quale $J$ è stazionario. Considero la famiglia ad un parametro di traiettorie $y(x,\alpha)=y_0(x)+\alpha\,\eta(x)$, con le condizioni $\eta(x_1)=\eta(x_2)=0$ per $\eta$ arbitraria ma sufficientemente regolare. Se $y_0$ è il cammino "stazionario" allora $y$ è un cammino "variato" rispetto a $y_0$ di una certa quantità $\delta y$ dipendente da $\eta$ e $\alpha$. Con questo artifizio, si ha la dipendenza $J=J(\alpha)$, e la condizione per la stazionarietà di $J$ diventa $\fracd{J}{\alpha}|_{\alpha=0}=0$. Sviluppando la derivata nell'integrale si arriva a $\fracd{J}{\alpha}=\int_{x_1}^{x_2}\fracp{f}{y}\fracp{y}{\alpha}\de x + \int_{x_1}^{x_2}\fracp{f}{\dot y}\fracpp{y}{x}{\alpha}\de x$. Il secondo integrale lo semplifico per parti, considerando che per le condizioni imposte $y(x_1,\alpha)$ e $y(x_2,\alpha)$ sono costanti in $\alpha$, dunque $\fracd{J}{\alpha}=\int_{x_1}^{x_2}[\fracp{f}{y}-\fracd{}{x}(\fracp{f}{\dot y})]{\fracp{y}{\alpha}}$. Per la stazionarietà deve essere quindi $\int_{x_1}^{x_2}[\fracp{f}{y}-\fracd{}{x}(\fracp{f}{\dot y})]{\fracp{y}{\alpha}}|_{\alpha=0} = 0$, e data l'arbitrarietà di $\eta$ posso usare il lemma fondamentale del calcolo delle variazioni ottenendo $\fracp{f}{y}-\fracd{}{x}(\fracp{f}{\dot y})=0$. Questa è l'equazione di Eulero-Lagrange.\\
+	Posso riscrivere questa equazione in modo più significativo: se mi discosto da $y_0$ di una quantità $\delta y=\fracp{y}{\alpha}|_{\alpha=0}\de\alpha$ allora $J$ subirà una variazione $\delta J=\fracp{J}{\alpha}|_{\alpha=0}\de\alpha$. Riscrivendo l'equazione sopra trovo $\delta J=\int_{x_1}^{x_2}(\fracp{f}{y}-\fracd{}{x}(\fracp{f}{\dot y}))\delta y\de x$
+	
+	Si può generalizzare quanto sopra al caso in cui $f=f(x, y_1, \ldots, y_n, \dot y_1,\ldots,\dot y_n)$. Per ogni variabile $y_j$ considero la famiglia di curve $y_j(x,\alpha)=y_{0j}(x)+\alpha\gamma_j(x)$ e le variazioni $\delta y_j$. Questa volta sarà $\delta J=\int_{x_1}^{x_2}[\fracp{f}{y_1}\fracp{y_1}{\alpha} +\fracp{f}{\dot y_1}\fracpp{y_1}{x}{\alpha}+\ldots+\fracp{f}{y_n}\fracp{y_n}{\alpha} +\fracp{f}{\dot y_n}\fracpp{y_n}{x}{\alpha}]\de x$ ma i calcoli sono come sopra. Alla fine ottengo $\delta J=\int_{x_1}^{x_2}\sum_j[\fracp{f}{y_j}-\fracd{}{x}(\fracp{f}{\dot y_j})]\delta y_j\de x$. Per la stazionarietà $\delta J=0 \Rightarrow \fracp{f}{y_j}-\fracd{}{x}(\fracp{f}{\dot y_j})=0$ per ogni $j$.
+	
+	\subsection{Minima distanza su un piano}
+	L'elemento di lunghezza è $\de s=\sqrt{\de x^2+\de y^2}=\sqrt{1+\dot y^2}\de x$. Fra tutte le curve nel piano voglio quella che ha minore lunghezza $L=\min \int_1^2 \de s = \min \int_{x_1}^{x_2}\sqrt{1+\dot y^2}\de x$. Con $f(x,y,\dot y)=\sqrt{1+\dot y^2}$ trovo $\fracp{f}{y}=0$ e $\fracp{f}{\dot y}=\frac{\dot y}{\sqrt{1+\dot y^2}}$. Il cammino $y(x)$ di lunghezza minima soddisfa $\fracd{}{x}(\frac{\dot y}{\sqrt{1+\dot y^2}})=0$ cioè $\frac{\dot y}{\sqrt{1+\dot y^2}}=\text{cost}$
+	
+\end{document}

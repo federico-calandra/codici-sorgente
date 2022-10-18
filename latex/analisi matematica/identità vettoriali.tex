@@ -1,0 +1,163 @@
+\documentclass[10pt,a4paper]{article}
+
+%% PACCHETTI AGGIUNTIVI
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+%\usepackage{bm}
+\usepackage{calc}
+%\usepackage[inline]{enumitem}
+%\usepackage{ifthen}
+%\usepackage[utf8]{inputenc}
+\usepackage[landscape]{geometry}
+%\usepackage{graphicx}
+%\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{mathrsfs}
+%\usepackage{multicol,multirow}
+%\usepackage{subcaption}
+%\usepackage{tabularx}
+%\usepackage[absolute]{textpos}
+\usepackage{titlesec}
+%\usepackage{wrapfig}
+%\usepackage{xfrac}
+
+
+%% GEOMETRIA
+\geometry{top=1cm,bottom=1cm,left=.7cm,right=.7cm}
+
+%%	STILE
+\pagestyle{empty}
+%\raggedright
+
+%%	HEADINGS
+%%		Numerazione
+\setcounter{secnumdepth}{0}
+%\setlength{\parindent}{3pt}
+%\setlength{\parskip}{0pt plus 0.5ex}
+%%		Formattazione capitoli
+%\titleformat{\chapter}[hang]{\normalfont\huge\bfseries}{\thechapter\quad}{0cm}{}  	% hang, block, display, runin
+%%		Formattazione headings \titlesec {spazio-sx}{spazio-prima}{spazio-dopo}
+\titlespacing{\section}{-2 ex}{2 ex}{0 ex}
+\titlespacing{\paragraph}{0 ex}{1 ex}{3 ex}
+
+%% Nuovi comandi
+\newcommand{\de}{\mathrm d}
+\newcommand{\fracd}[2]{\frac{\de #1}{\de #2}}
+\newcommand{\fracp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fracpq}[2]{\frac{\partial^2 #1}{{\partial #2}^2}}
+\newcommand{\fracpp}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+\newcommand{\dive}[1]{\text{div}\,#1}
+\newcommand{\rot}[1]{\text{rot}\,#1}
+\newcommand{\sz}[1]{\scriptsize #1\normalsize}
+\newcommand{\ul}[1]{\underline{\smash{#1}}}
+\newcommand{\mach}{\text{Ma}}
+
+
+\begin{document}
+
+	\section{Identità di primo ordine}
+\paragraph{gradiente di una funzione composta} $\nabla(f\circ F) = \partial_i\{f(F(x_1,\ldots,x_n))\}\mathbf e_i = f^\prime(F(x_1,\ldots,n_n))\partial_i\{F(x_1,\ldots,x_n)\}\mathbf e_i = (f^\prime\circ F) \nabla F$
+	
+\paragraph{gradiente di un campo composto} $\nabla(F\circ\mathbf A) = \partial_i\{F(A_1(x_1,\ldots,x_n),\ldots,A_n(x_1,\ldots,x_n))\}\mathbf e_i = \ldots= (\nabla F\circ\mathbf A)\nabla \mathbf A$
+
+\paragraph{gradiente del prodotto 1} $\nabla (f g) = \fracp{(fg)}{x_i} \mathbf e_i = f \fracp{g}{x_i} \mathbf e_i + \fracp{f}{x_i} g\, \mathbf e_i = f\,\nabla g+g\,\nabla f$
+
+\paragraph{gradiente del prodotto 2} $\nabla (f \mathbf A) = $
+
+\paragraph{gradiente del prodotto scalare GPS} $\nabla(\mathbf A \cdot \mathbf B) = \nabla(A_iB_i) = A_i\nabla B_i + B_i\nabla A_i = \mathbf A \cdot \mathbf J_\mathbf B + \mathbf B \cdot \mathbf J_\mathbf A$\\
+caso particolare $\frac 12 \nabla (\mathbf A^2) = \mathbf A \cdot \mathbf J_\mathbf A$
+
+\paragraph{divergenza del prodotto DP} $\nabla \cdot (f \mathbf A) = \partial_i\, \mathbf e_i \cdot A_j\, \mathbf e_j = \fracp{(f A_i)}{x_i}=f\, \fracp{A_i}{x_i} + \fracp{f}{x_i} A_i=f\, \dive{\mathbf A} + \nabla f \cdot \mathbf A$
+
+\paragraph{divergenza del prodotto vettoriale DPV} $\nabla \cdot (\mathbf A \times \mathbf B) = \fracp{}{x_h} \mathbf e_h \cdot \varepsilon_{ijk} A_iB_j \mathbf e_k = 
+(\varepsilon_{ijk}\fracp{A_i}{x_k}B_j + \varepsilon_{ijk}\fracp{B_j}{x_k}A_i) = \varepsilon_{ijk}\fracp{A_i}{x_k}\mathbf e_j\cdot B_j\mathbf e_j + \varepsilon_{ijk}\fracp{B_j}{x_k}\mathbf e_i\cdot A_i\mathbf e_i = \ldots = \mathbf B \cdot \rot \mathbf A - \mathbf A \cdot \rot \mathbf B$
+
+\paragraph{rotore del prodotto RP} $\nabla \times (f \mathbf A) = \varepsilon_{ijk} \fracp{(f A_j)}{x_i} \mathbf e_k = \varepsilon_{ijk} f \fracp{A_j}{x_i}\, \mathbf e_k + \varepsilon_{ijk} \fracp{f}{x_i} A_j\, \mathbf e_k = f\, \rot{\mathbf A} + \nabla f \times \mathbf A$\\
+caso particolare $\nabla \times (f \nabla g) = \ldots = \nabla f \times \nabla g$ 
+
+\paragraph{rotore del prodotto vettoriale RPV} $\nabla \times (\mathbf A \times \mathbf B) = $
+
+\paragraph{laplaciano del prodotto} $\nabla^2 (f g) = \nabla \cdot \nabla(f g) = \partial_i\, \mathbf e_i \cdot \big( f \fracp{g}{x_j} \mathbf e_j + \fracp{f}{x_j} g\, \mathbf e_j \big) = \partial_i \{f \fracp{g}{x_i}\} + \partial_i \{\fracp{f}{x_i} g\} = f \fracpq{g}{x_i} + \fracp{f}{x_i}\fracp{g}{x_i} + \fracp{f}{x_i}\fracp{g}{x_i} + \fracpq{f}{x_i}\, g = f\, \nabla^2 g + g\, \nabla^2 f + 2 \nabla f \cdot \nabla g$
+
+\paragraph{identità notevoli} $\nabla\{\frac1{|\mathbf x - \mathbf x^\prime|}\} = \nabla \{[(x-x^\prime)^2 + (y-y^\prime)^2 + (z-z^\prime)^2]^{-1/2}\} = -\frac12 [(\ldots)^2 + (\ldots)^2 + (\ldots)^2]^{-3/2} \, \nabla\{(\ldots)^2 + (\ldots)^2 + (\ldots)^2\} = -\frac{(\mathbf x - \mathbf x^\prime)}{|\mathbf x - \mathbf x^\prime|^3}$
+
+
+
+	\section{Identità di secondo ordine}
+\paragraph{gradiente della divergenza GD} $\nabla(\nabla \cdot \mathbf A) = \partial_i \{\fracp{}{x_j} \mathbf e_j \cdot A_k \mathbf e_k\}\, \mathbf e_i = \partial_i \{\fracp{A_j}{x_j}\}\, \mathbf e_i$
+
+\paragraph{divergenza del gradiente DG} $\nabla \cdot \nabla f = \nabla^2 f$
+
+\paragraph{divergenza del rotore DR} $\nabla \cdot(\nabla \times \mathbf A) = \fracp{}{x_h}\, \mathbf e_h \cdot (\varepsilon_{ijk} \fracp{A_j}{x_i}\, \mathbf e_k) = \varepsilon_{ijk} \fracpp{A_j}{x_k}{x_i}$.\;\; Se $f \in C^2 \Rightarrow \partial_{ij}f = \partial_{ji}f \Rightarrow \varepsilon_{ijk} \fracpp{A_j}{x_h}{x_i}\, \mathbf e_k = (\varepsilon_{ijk}+\varepsilon_{kji}) \fracpp{A_j}{x_h}{x_i} \mathbf e_k = 0$
+
+\paragraph{rotore del gradiente RG} $\nabla \times {(\nabla f)} = \varepsilon_{ijk} \partial_i \fracp{f}{x_j} \mathbf e_k = \varepsilon_{ijk} \frac{\partial^2 f}{\partial x_i\partial x_j} \mathbf e_k$.\;\; Se $f \in C^2 \Rightarrow \partial_{ij}f = \partial_{ji}f \Rightarrow \varepsilon_{ijk}\fracpp{f}{x_i}{x_j}\, \mathbf e_k = (\varepsilon_{ijk} + \varepsilon_{jik}) \fracpp{f}{x_i}{x_j} \mathbf e_k = \mathbf 0$
+
+\paragraph{rotore del rotore RR} $\nabla \times (\nabla \times \mathbf A) = \varepsilon_{ijk} \fracp{(\rot A)_j}{x_i} \mathbf e_k = \varepsilon_{ijk} \partial_i \{\varepsilon_{rst} \fracp{A_s}{x_r}\} \mathbf e_k =
+\nabla (\nabla\cdot\mathbf A) - \nabla^2\mathbf A$
+
+
+
+	\section{Identità di terzo ordine}
+\paragraph{gradiente e laplaciano} $\nabla(\nabla^2 f) = \nabla^2(\nabla f)$
+
+	\section{Simboli}
+\paragraph{nabla}
+$\nabla = \frac{\partial}{\partial x_i} \mathbf e_i$
+
+\paragraph{simbolo di Kroneker}
+$\delta_{ij} = \begin{cases} 1&i=j \\ 0&i\neq j \end{cases}$
+	
+\paragraph{simbolo di Levi-Civita}
+$\varepsilon_{ijk} = \begin{cases} 1&(i,j,k) \text{ permutazione pari di }(1,2,3) \\ -1&(i,j,k) \text{ permutazione dispari di }(1,2,3) \\0&\text{ altrimenti}\end{cases}$\\
+permutazioni pari $(1,2,3) \quad (2,3,1) \quad (3,1,2)$ \qquad permutazioni dispari $(1,3,2) \quad (2,1,3) \quad (3,2,1)$
+
+
+
+	\section{Prodotti}
+\paragraph{prodotto scalare}
+$\mathbf a \cdot \mathbf b = a_i \mathbf e_i \cdot b_j \mathbf e_j = a_i b_j (\mathbf e_i \cdot \mathbf e_j) =a_i b_j \delta_{ij} = a_i b_i$
+
+\paragraph{prodotto vettoriale}
+$\mathbf a \times \mathbf b = a_i \mathbf e_i \times b_j \mathbf e_j = a_i b_j (\mathbf e_i \times \mathbf e_j) = a_i b_j \varepsilon_{ijk} \mathbf e_k = (a_i b_j -a_j b_i)\, \mathbf e_k$
+
+\paragraph{prodotto misto}
+$\mathbf a \times \mathbf b \cdot \mathbf c = (\varepsilon_{ijk} a_i b_j\, \mathbf e_k) \cdot c_h\, \mathbf e_h = \varepsilon_{ijk} a_i b_j c_h \delta_{kh} = \varepsilon_{ijk} a_i b_j c_k = \mathbf a \cdot \mathbf b \times \mathbf c$
+
+\paragraph{doppio prodotto vettoriale}
+$\mathbf a \times (\mathbf b \times \mathbf c) = \varepsilon_{ijk} a_i (\mathbf b \times \mathbf c)_j\, \mathbf e_k = \varepsilon_{ijk} a_i (\varepsilon_{rst} b_r c_s\, \mathbf e_t \cdot \mathbf e_j)\, \mathbf e_k = \varepsilon_{ijk} \varepsilon_{rsj} a_i b_r c_s\, \mathbf e_k = \ldots = \mathbf b(\mathbf a \cdot \mathbf c) - \mathbf c(\mathbf a \cdot \mathbf b)$
+
+
+
+	\section{Gradiente}
+\paragraph{definizione}
+$f: \mathbb{R} \longrightarrow \mathbb{R} \qquad \nabla f = \fracp{f}{x_i} \mathbf e_i \qquad \nabla: C^1(\mathbb{R}) \longrightarrow \mathbb{R}^3$
+	
+\paragraph{gradiente tensoriale}
+\quad$\mathbf A: \mathbb{R}^3 \longrightarrow \mathbb{R}^3 \qquad \tilde\nabla \mathbf A=\fracp{A_i}{x_j}\, \mathbf e_i \otimes \mathbf e_j \qquad \tilde\nabla: C^1(\mathbb{R}^3) \longrightarrow \mathscr L$
+
+
+
+	\section{Divergenza}
+\paragraph{definizione}
+$\mathbf A: \mathbb{R}^3 \longrightarrow \mathbb{R}^3 \qquad \dive{\mathbf A}= \nabla \cdot \mathbf A =\fracp{A_i}{x_i} \qquad\dive{}: C^1(\mathbb{R}^3) \longrightarrow \mathbb{R}$
+
+\paragraph{divergenza tensoriale}
+$\tilde T \in \mathscr L \qquad \dive{\tilde T} = \fracp{T_{ij}}{x_j}\, \mathbf e_i \qquad \dive{}: \mathscr L \longrightarrow \mathbb{R}^3$
+
+
+
+	\section{Rotore}
+\paragraph{definizione}
+$\mathbf A: \mathbb{R}^3 \to \mathbb{R}^3 \qquad \rot{\mathbf A}= \nabla \times \mathbf A = \varepsilon_{ijk} \fracp{A_j}{x_i}\, \mathbf e_k \qquad\rot{}: C^1(\mathbb{R}^3) \longrightarrow \mathbb{R}^3$
+
+
+
+	\section{Laplaciano scalare}
+\paragraph{definizione}
+$f: \mathbb{R} \longrightarrow \mathbb{R} \qquad \nabla^2 f = \nabla \cdot \nabla f = \sum_i\frac{\partial^2 f}{\partial {x_i}^2} \qquad \nabla(\cdot): C^2(\mathbb{R}) \longrightarrow \mathbb{R}$
+
+
+
+	\section{Laplaciano vettoriale}
+\paragraph{definizione}
+$\mathbf A: \mathbb{R}^3 \longrightarrow \mathbb{R}^3 \qquad \nabla^2 \mathbf A = (\nabla^2 A_i)\, \mathbf e_i \qquad \nabla^2(\cdot): C^2(\mathbb{R}^3) \longrightarrow \mathbb{R}^3$
+	
+\end{document}

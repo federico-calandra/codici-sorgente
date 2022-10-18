@@ -1,0 +1,71 @@
+\documentclass[11pt,a4paper]{article}	% article report book
+
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{bm}
+\usepackage{calc}
+%\usepackage[inline]{enumitem}
+%\usepackage[utf8]{inputenc}
+\usepackage[portrait]{geometry}
+%\usepackage{graphicx}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=black]{hyperref}
+%\usepackage{mathrsfs}
+%\usepackage{multicol,multirow}
+%\usepackage{subcaption}
+%\usepackage{tabularx}
+%\usepackage[absolute]{textpos}
+\usepackage{titlesec}
+%\usepackage{wrapfig}
+%\usepackage{xfrac}
+
+%% INTESTAZIONI
+%\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\thechapter}{20pt}{\Huge}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
+
+%% SPAZIATURA {spazio-sx}{spazio-prima}{spazio-dopo}
+%\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1em}
+\titlespacing*{\subparagraph}{\parindent}{3.25ex plus 1ex minus .2ex}{1em}
+
+%% COUNTERS
+%\setcounter{chapter}{0}
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\pagestyle{empty}	% empty plain headings myheadings
+
+%% GEOMETRIA
+\geometry{top=1cm,bottom=1cm,left=.7cm,right=.7cm}
+%\setlength{\baselineskip}{0pt}
+%\setlength{\columnsep}{0pt}
+%\setlength{\columnwidth}{0pt}
+%\setlength{\parindent}{0pt}
+%\setlength{\linewidth}{0pt}
+%\setlength{\parskip}{0pt}
+%\setlength{\tabcolsep}{0pt}
+
+%%	DEFINIZIONE COMANDI
+\newcommand{\de}{\mathrm d}
+\newcommand{\e}[1]{e^{#1}}
+\newcommand{\E}[1]{\cdot 10^{#1}}
+\newcommand{\fracd}[2]{\frac{\de #1}{\de #2}}
+\newcommand{\fracp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fracpq}[2]{\frac{\partial^2\! #1}{{\partial #2}^2}}
+\newcommand{\fracpp}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+\newcommand{\grad}[1]{\text{grad}\,#1}
+\newcommand{\dive}[1]{\text{div}\,#1}
+\newcommand{\rot}[1]{\text{rot}\,#1}
+
+%\hypersetup{linktoc=all, colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan, pdftitle={Overleaf Example}, pdfpagemode=FullScreen}
+
+
+
+\begin{document}
+
+\end{document}

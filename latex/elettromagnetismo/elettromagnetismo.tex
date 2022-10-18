@@ -1,0 +1,548 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{bm}
+\usepackage{calc}
+%\usepackage[inline]{enumitem}
+%\usepackage[utf8]{inputenc}
+\usepackage[portrait]{geometry}
+%\usepackage{graphicx}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=black]{hyperref}
+%\usepackage{mathrsfs}
+%\usepackage{multicol,multirow}
+%\usepackage{subcaption}
+%\usepackage{tabularx}
+%\usepackage[absolute]{textpos}
+\usepackage{titlesec}
+%\usepackage{wrapfig}
+%\usepackage{xfrac}
+
+%% INTESTAZIONI
+%\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\thechapter}{20pt}{\Huge}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
+
+%% SPAZIATURA {spazio-sx}{spazio-prima}{spazio-dopo}
+%\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1em}
+\titlespacing*{\subparagraph}{\parindent}{3.25ex plus 1ex minus .2ex}{1em}
+
+%% COUNTERS
+%\setcounter{chapter}{0}
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\pagestyle{empty}	% empty plain headings myheadings
+
+%% GEOMETRIA
+\geometry{top=1cm,bottom=1cm,left=.7cm,right=.7cm}
+%\setlength{\baselineskip}{0pt}
+%\setlength{\columnsep}{0pt}
+%\setlength{\columnwidth}{0pt}
+%\setlength{\parindent}{0pt}
+%\setlength{\linewidth}{0pt}
+%\setlength{\parskip}{0pt}
+%\setlength{\tabcolsep}{0pt}
+
+%%	DEFINIZIONE COMANDI
+\newcommand{\de}{\mathrm d}
+\newcommand{\e}[1]{e^{#1}}
+\newcommand{\E}[1]{\cdot 10^{#1}}
+\newcommand{\fracd}[2]{\frac{\de #1}{\de #2}}
+\newcommand{\fracp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fracpq}[2]{\frac{\partial^2\! #1}{{\partial #2}^2}}
+\newcommand{\fracpp}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+\newcommand{\grad}[1]{\text{grad}\,#1}
+\newcommand{\dive}[1]{\text{div}\,#1}
+\newcommand{\rot}[1]{\text{rot}\,#1}
+
+%\hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan, pdftitle={Overleaf Example}, pdfpagemode=FullScreen}
+
+
+\begin{document}
+	
+\tableofcontents
+\newpage
+	
+	\section*{}
+\subsection{Costanti}
+\begin{list}{}
+	\item carica elementare $e = 1.602 \E{-19} \; C$
+	\item massa elettrone $m_e = 9.109 \E{-31} \; kg$
+	\item carica elettrone $q_e = -e = -1.602 \E{-19} \; C$
+	\item raggio elettrone $r_e = 2.818 \E{-15} \; m $
+	\item massa protone $m_p = 1.673 \E{-27} \; kg$
+	\item carica protone $q_p = e = 1.602 \E{-19} \; C$
+	\item raggio protone $r_p = 0.81 \E{-15} \; m$
+	\item massa neutrone $m_n = 1.675 \E{-27} \; kg$
+	\item carica neutrone $q_n = 0 \; C$
+	\item raggio neutrone $r_n = 0.81 \E{-15} \; m$
+	\item costante dielettrica del vuoto $\epsilon_0 = 8.854 \E{-12} \;\; C^2 N^{-1} m^{-2}$
+	\item permeabilità magnetica del vuoto $\mu_0 = 1.257 \E{-6} \; Hm^{-1}$
+\end{list}
+\subsection{Esperimenti}
+\subsubsection{Oersted}
+Un filo percorso da corrente genera un campo magnetico (1820)
+\subsubsection{Faraday}
+Un filo percorso da corrente risente dell'effetto di un campo magnetico esterno (1821)\\
+Una corrente elettrica compare in un circuito chiuso quando varia il flusso amgnetico ad esso concatenato (1831)
+\subsubsection{Ampere}
+Tra due fili percorsi da correnti si esercitano delle forze (1820)
+\subsubsection{Maxwell}
+Le equazioni di Maxwell sono state compiutamente definite (1865)
+
+	\section{Campo elettrico e magnetico nel vuoto}
+\subsection{Elettrostatica}
+\subsubsection{Legge di Coulomb e potenziale}
+$\mathbf E = \frac1{4\pi\epsilon_0} \int \rho \de\upsilon^\prime \frac{\mathbf r - \mathbf r^\prime}{|\mathbf r - \mathbf r^\prime|^3} = \frac1{4\pi\epsilon_0} \int \rho \de\upsilon^\prime \nabla(-\frac1 {|\mathbf r-\mathbf r^\prime|}) = - \frac1{4\pi\epsilon_0} \nabla (\int \frac{\rho \de\upsilon^\prime}{|\mathbf r-\mathbf r^\prime|}) = - \frac1{4\pi\epsilon_0} \nabla V$
+
+\subsubsection{Lavoro di una forza centrale}
+La carica $q$ nell'origine produce il campo $\vec E(\vec r) = \frac{q}{4\pi\epsilon_0}\frac{\vec r}{||\vec r||^3}$. La carica $Q$ si muove da $A$ a $B$ lungo un percorso arbitrario $\gamma$. Decompongo il percorso in due tratti: con $\gamma_1$ arrivo sullo stesso raggio passante per $B$ muovendomi lungo 'arco $AB$ centrato nella carica; con $\gamma_2$ arrivo a $B$ muovendomi radialmente. Il lavoro del campo sulla carica è $ L_\gamma = \frac{qQ}{4\pi\epsilon_0}\int_A^B \frac{\vec r \cdot \de\vec s}{||\vec r||^3} =  L_{\gamma_1} +  L_{\gamma_2}$. Lungo $\gamma_1$ si ha $\vec r \perp \de\vec s$ quindi contano solo gli spostamenti radiali; il problema diventa unidimensionale. Lungo $\gamma_2$ si ha $\de\vec s = \hat r\,\de r$ quindi $ L_\gamma =  L_{\gamma_2} = \frac{qe}{4\pi\epsilon_0}\int_{r_A}^{r_B} \frac{r\,\de r}{r^3} = -\frac{qQ}{4\pi\epsilon_0}(\frac1{r_B}-\frac1{r_A})$.\\
+Gli spostamenti sulle superfici equipotenziali non fanno lavoro.
+
+\subsubsection{II equazione di Maxwell}
+Ci sono 2 modi per ottenerla: nella definizione di campo elettrico uso l'identità $\nabla(-\frac1{|\mathbf r-\mathbf r^\prime|}) = \frac{\mathbf r-\mathbf r^\prime}{|\mathbf r-\mathbf r^\prime|^3}$ per definire $\mathbf E$ in termini del gradiente di una funzione. Per un'identità vettoriale segue $\rot\mathbf E= 0$. L'altro modo è calcolare il lavoro del campo elettrico e vedere che viene $L_{AB} \propto (\frac1{r_1} - \frac1{r_2})$ cioè non dipende dalla traiettoria quindi è un campo conservativo ed esiste una funzione tale che $L_{AB} = V(A) - V(B)$ e $\mathbf E = -\nabla V$
+
+\subsubsection{Energia potenziale elettrostatica}
+Il lavoro da fare sulla carica per spostarla fra due punti è $ L_A^B = -\int_A^B q \mathbf E \cdot \de\mathbf s$, il segno meno in quanto è fatto dall'ambiente esterno sulla carica. Se si assume $A \equiv \infty$ come riferimento, ritrovo la definizione di energia potenziale elettrostatica rispetto all'$\infty$ cioè $U_\infty(P) = -\int_\infty^P q \mathbf E \cdot \de\mathbf s$, in cui si pone $U(\infty) = 0$. Di conseguenza si trova $ L_A^B = -(U_\infty(A) - U_\infty(B)) = \Delta U_\infty$.
+
+\subsubsection{Energia potenziale elettrostatica e potenziale elettrostatico}
+Per la conservatività vale $ L_A^B = -\int q (-\nabla\mathbf V) \cdot \de\mathbf s = -q\int_A^B -\de V = -q [-V_B - (-V_A)] = q \Delta V$. Confrontando con la precedente si ottiene $\Delta U = q \Delta V$. Il trucco sta nell'assumere $A \equiv \infty$ e $U(\infty) = 0$ in modo da avere $U(P) = q V(P)$.
+
+\subsubsection{Energia potenziale elettrostatica e densità di energia}
+Parto con il sistema di $N-1$ cariche $\{(q_k, \mathbf r_k)\}_{k=1,\ldots,N-1}$ a cui aggiungo una carica $q$ dall'infinito portandola in $\mathbf r$. Per sovrapposizione lineare si muove nel potenziale delle altre $N$ quindi serve l'energia $U = \sum_k q V_k(\mathbf r) = q \sum_k \frac{q_k} {4\pi\epsilon_0} \frac{ \mathbf r}{|\mathbf r - \mathbf r_k|}$. Con lo stesso ragionamento posso calcolare l'energia necessaria per assemblare il sistema delle $N$ cariche partendo dalla prima. Nel limite del continuo si dimostra che vale $U_{tot} = \frac12 \int \rho V \de\upsilon$. È messa in evidenza l'interazione fra le cariche ma si può trovare una forma alternativa in cui si mette in evidenza l'energia del campo elettrico. Poiché $\nabla^2 V = -\rho/\epsilon_0$ si trova,integrando per parti ($\nabla V \cdot V = 0$), $U = \frac{\epsilon_0}2 \int |\nabla V|^2 \de\upsilon = \frac{\epsilon_0}2 \int \mathbf E^2 \de\upsilon$, e posso definire la densità di energia elettrostatica $w_E = \frac{\epsilon_0}2 \mathbf E^2$ [VEDI JACKSON PER AUTO ENERGIE]
+
+
+\subsubsection{Potenziale dipolo elettrico a grandi distanze}
+A grandi distanze $(r \gg d$) il potenziale del dipolo elettrico si può scrivere $V(\mathbf r) \approx \frac1{4\pi\epsilon_0} \frac{\mathbf p \cdot \mathbf r}{r^3}$ dove $\mathbf p = q \mathbf d$ è il momento di dipolo. Ho due cariche $q_+$ e $q_-$ a distanza $d$ e valuto il potenziale in un punto $P$ a distanza $r\gg d$ dal centro del dipolo, che vale $V(r)=\frac{q}{4\pi\epsilon} (\frac1{r_+}-\frac1{r_-}) = \frac{q}{4\pi\epsilon} \frac{r_- - r_+}{r_- r_+}$. Se $r \ll d$ allora $r_- \approx r_+$ quindi $r_- r_+ \approx r^2$. La differenza al numeratore dipende dalla posizione di $P$ rispetto all'asse del dipolo: se è sull'asse vale $d$, se è sull'ortogonale vale $0$, è facile convincersi che $r_- - r_+ \approx d \cos\theta$. Con queste approssimazioni il potenziale si scrive nella forma sopra osservando che $\frac{q d \cos\theta}{r^2} = \frac{\mathbf p \cdot \mathbf r}{r^3}$. L'approssimazione è tanto migliore quanto più $r\gg d$.
+
+\subsubsection{Sviluppo in multipoli}
+Da lontano una generica distribuzione è vista come una carica totale + un momento di dipolo + momenti di ordine superiore. In altre parole il potenziale di una distribuzione di carica per $r \gg r^\prime$ si può scrivere $V(\mathbf r) = \frac1{4\pi\epsilon_0} \frac 1r (Q_{tot} + \frac{\mathbf  p \cdot \mathbf  r}{r^2} + \ldots)$. Si dimostra partendo dalla definizione di potenziale $V(\mathbf r) = \frac1{4\pi\epsilon_0} \int \frac{\rho \de\upsilon^\prime}{|\mathbf r - \mathbf r^\prime|}$. Riscrivo il denominatore facendo emergere la quantità $\frac {r^\prime}r$ quindi (per definizione è $\cos\theta = \frac{\mathbf r \cdot \mathbf r^\prime}{r r^\prime}$) $|\mathbf r - \mathbf r^\prime| = \sqrt{(\mathbf r - \mathbf r^\prime)\cdot(\mathbf r - \mathbf r^\prime)} = \sqrt{r^2 + {r^\prime}^2 - 2rr^\prime\cos\theta} = r\sqrt{(1 + (r^\prime/r)^2 - 2r^\prime/r\cos\theta)}$. Osservo che posso sfruttare lo sviluppo di Taylor di $\sqrt{1+\delta}$ con $\delta = (\frac{r^\prime}r)^2 - 2\frac{r^\prime}r\cos\theta$ per l'ipotesi di grandi distanze ($\delta \ll 1$). Facendo un po' di calcoli alla fine trovo $1/|\mathbf r - \mathbf r^\prime| = \frac1r (1 + \frac{r^\prime}r \cos\theta + (\frac{r^\prime}r)^2 \frac{3\cos^2\theta-1}2 + \ldots)$. Integrando la quantità ho il potenziale $V(\mathbf r) = \frac1{4\pi\epsilon_0} \frac1r \int \rho \de\upsilon^\prime + \frac1{4\pi\epsilon} \frac1{r^2} \int r^\prime \cos\theta \rho \de\upsilon^\prime + \ldots$ Il primo termine è la carica totale della distribuzione. Per il secondo termine uso la definizione di $\cos\theta$ per avere $\int \rho r^\prime \cos\theta \de\upsilon^\prime = \frac{\mathbf r}r \cdot \int \rho \mathbf r^\prime \de\upsilon^\prime = \frac{\mathbf p \cdot \mathbf r}r$
+
+\subsubsection{Ancora sullo sviluppo in multipoli}
+Vedi Picasso
+
+\subsubsection{Forze sul dipolo elettrico}
+La risultante delle forze è $\mathbf F = q(\mathbf E(\mathbf r) - \mathbf E(\mathbf r + \mathbf d)) = q (\mathbf d \cdot \nabla\mathbf E) = \mathbf p \cdot \nabla\mathbf E$. Il momento risultate rispetto al centro del dipolo è $\mathbf M = \frac{\mathbf\delta}2 \times q\mathbf E + (-\frac{\mathbf\delta}2) \times -q\mathbf E = \mathbf p \times \mathbf E$.
+
+\subsubsection{Le distribuzioni superficiali introducono discontinuità}
+Sia distribuita una carica $\sigma(\mathbf r)$ su una superficie. Prendo un cilindretto di Gauss a cavallo della superficie con altezza infinitesima rispetto al raggio; il flusso elementare è $\mathbf E_1 \cdot \mathbf n \de S - \mathbf E_1 \cdot \mathbf n \de S$ e la carica racchiusa è $\sigma \de S$. Per Gauss trovo $(\mathbf E_1 - \mathbf E_2)\cdot\mathbf n = \sigma/\epsilon$ cioè la componenti normale del campo subisce una discontinuità di $\sigma/\epsilon$
+
+\subsubsection{Potenziale di una distribuzione sferica}
+Uso Gauss
+
+\subsubsection{Distribuzione sferica con cavità circolare (poi immersa in un campo uniforme)}
+Una sfera di raggio $R_1$ e densità di carica uniforme $\varrho$ ha al suo interno una cavità sferica di raggio $R_2<\frac{R_1}{2}$, il cui centro $O_2$ è a distanza $D$ dal centro $O_1$ della sfera. Determinare il campo elettrico all'interno della cavità. Se la sfera viene posta in un campo elettrico $\vec E$, esterno ed uniforme, determinare la forza agente sulla distribuzione e il momento rispetto a $O_1$\\
+\underline{Soluzione:} la distribuzione assegnata la posso pensare come somma di una distribuzione sferica di densità $\varrho$ (centro e raggio della sfera) e di una distribuzione sferica di densità $-\varrho$ (centro e raggio della cavità). Fisso un s.d.r. cartesiano con origine in $O_1$ e asse $x$ orientato in modo che $(O_2-O_1)=D\,\hat\imath$. Sia $\vec r_1$ un punto della cavità rispetto a $O_1$ e $\vec r_2$ lo stesso punto rispetto a $O_2$, dunque $\vec r_1=D\,\hat\imath+\vec r_2$. Per la sovrapposizione degli effetti: $\vec E_\mathrm{tot}=\vec E_1+\vec E_2=\frac{\varrho}{3\epsilon}\vec r_1+\frac{-\varrho}{3\epsilon}\vec r_2=\frac{\varrho}{3\epsilon}(\vec r_1-\vec r_2)=\frac{\varrho D}{3\epsilon}\hat\imath$. Il campo nella cavità è uniforme
+
+\subsubsection{Campi elettrici non conservativi}
+Per il campo $\mathbf E_s$ delle forze elettrostatiche vale la II equazione di Maxwell $\rot\mathbf E_s = 0$ quindi $\Gamma(\mathbf E) = \oint E_s\cdot\de s = 0$. Ma esistono campi elettrici $E_{nc}$ per i quali si verifica $\Gamma(\mathbf E_{nc}) \neq 0$ e si parla di forze elettromotrici $fem$. Alcuni esempi sono:
+generatore van de Graff, reazioni chimiche nelle pila/accumulatore, forza di Lorentz in effetto Hall, induzione elettromagnetica (!).
+
+\subsection{Magnetostatica}
+\subsubsection{Legge di Laplace}
+$B = \frac{\mu_0}{4\pi} \oint \mathbf J \de\upsilon^\prime \times \frac{\mathbf r - \mathbf r^\prime}{|\mathbf r - \mathbf r^\prime|^3} = \frac{\mu_0}{4\pi} \oint \mathbf J \de\upsilon^\prime \times \nabla(-\frac1 {|\mathbf r-\mathbf r^\prime|}) = \frac{\mu_0}{4\pi} \rot \oint \frac{\mathbf J \de\upsilon^\prime}{|\mathbf r-\mathbf r^\prime|}$ [vedi Jackson, passaggio 5.16 non mi torna]
+
+\subsubsection{IV equazione di Maxwell} 
+La legge di Ampère nel caso stazionario è $\rot\mathbf B = \mu_0 \mathbf J$. Applicando la divergenza segue $\dive\rot \mathbf B = \mu_0\; \dive\mathbf J$. Ma per un'identità vettoriale segue $\dive\rot\mathbf B= 0 \;\Longrightarrow\; \dive\mathbf J = 0$. Dall'equazione di continuità segue quindi $\dive\mathbf J = 0 \;\Longrightarrow\; \fracp{\rho}{t} = 0$ cioè il caso di condizioni stazionarie.
+
+\subsubsection{Potenziale magnetico vettoriale}
+Dalla II equazione di Maxwell segue $\dive\mathbf B = 0 \;\Rightarrow\; \mathbf B = \rot\mathbf A$. Sostituisco nella IV equazione di Maxwell usando un'identità vettoriale  $\nabla(\dive\mathbf A) - \nabla^2\mathbf A = \mu_0 \mathbf J$.
+
+\subsubsection{Campo magnetico generato da filo rettilineo}
+Nel filo rettilineo indefinito scorre la corrente $i$. Si vuole il campo magnetico a distanza $r$ dal filo.\\
+Soluzione 1: tutti i contributi $\de\mathbf B(\mathbf r)$ in uno stesso punto sono paralleli fra di loro e di intensità variabile con l'elemento considerato. Per la regola della mano destra $\de\mathbf B = \de B_\phi \mathbf u_\phi$ quindi $\mathbf B = B_\phi \mathbf u_\phi$ con $B_\phi = \oint \de B_\phi$. Per il modulo applico la legge di B-S considerando che $|\de\mathbf l^\prime \times (\mathbf r - \mathbf r^\prime)| = \de z^\prime |\mathbf r - \mathbf r^\prime| \sin\theta$, quindi $\de B_\phi(\mathbf r) = \frac{\mu_0 i}{4\pi} \sin\theta \frac1{|\mathbf r - \mathbf r^\prime|^2} \de z^\prime$. L'integrazione non può svolgersi in questa variabile; se uso l'angolo di $(\mathbf r - \mathbf r^\prime)$ con il piano della spira allora gli estremi sono $\pm \frac\pi 2$. Quindi devo tradurre l'integrando in termini di tale angolo $\alpha$. Dalla trigonometria $\theta + \phi  = \pi \;\Longrightarrow\; \sin\theta = \sin\phi$ e $\phi + \alpha = \frac\pi 2 \;\Longrightarrow\; \sin\phi = \cos\alpha$. Per il denominatore, sempre dalla trigonometria $|\mathbf r - \mathbf r^\prime| = r/\cos\alpha$. Rimane il differenziale $\de z^\prime$ ma ho prima bisogno di $z^\prime$, sempre dalla trigonometria $z^\prime = |\mathbf r - \mathbf r^\prime| \sin\alpha = r \tan\alpha$ quindi $\de z^\prime = r \de(\tan\alpha) = \frac{r}{\cos^2\alpha} \de\alpha$. Ho ottenuto $B_\phi(r) = \frac{\mu_0 i}{4\pi} \int_{-\pi/2}^{+\pi/2} \cos\alpha \frac{\cos^2\alpha}{r^2} \frac{r}{\cos^2\alpha} \de\alpha = \frac{\mu_0 i}{4\pi} \frac1r (\sin(\frac\pi 2) - \sin(-\frac\pi 2)) = \frac{\mu_0 i}{2\pi} \frac1r$ quindi $\mathbf B(\mathbf r) = \frac{\mu_0 i}{2\pi} \frac1{|\mathbf r|} \mathbf u_\phi$.
+
+\subsubsection{Campo magnetico generato da spira circolare}
+La spira di  raggio $R$ conduce la corrente $i$ ed è posta nel piano $Oxy$ con asse $z$ tale che $i$ è antioraria. Si vuole calcolare il campo sull'asse della spira.\\
+Soluzione 1: per la simmetria cilindrica i contributi $\de\mathbf B(\mathbf r)$ di elementi diametralmente opposti hanno intensità costante e si sommano vettorialmente in un contributo lungo l'asse. Posso quindi considerarne solo la componente $\de B_z$ e di conseguenza $\mathbf B = B_z \mathbf u_z$ con $B_z = \oint \de B_z$. Per il modulo $\de B_z = |\de\mathbf B| \cos\alpha$ applico la legge di B-S considerando che $|\de\mathbf l^\prime \times (\mathbf r - \mathbf r^\prime)| = \de l^\prime |\mathbf r - \mathbf r^\prime|$, $\de l^\prime = R\de\theta$ e $\cos\alpha = \frac{R}{|\mathbf r - \mathbf r^\prime|}$ quindi $\de B_z = \frac{\mu_0 i}{4\pi} |\mathbf r - \mathbf r^\prime| \frac1{|\mathbf r - \mathbf r^\prime|^3} \frac{R}{|\mathbf r - \mathbf r^\prime|} R\de\theta$. Integrando su tutta la spira ottengo $\mathbf B(z\mathbf u_z) = \frac{\mu_0 i}{2} \frac{R^2}{(z^2 + R^2)^{3/2}} \mathbf u_z$. I casi notevoli sono $z = 0$ e $z \gg R$
+
+\subsubsection{Spira circolare a grande distanza}
+Dalla precedente con $z \gg R$ risulta $\mathbf B(z) \approx \frac{\mu_0 i}{2} \frac{R^2}{z^3} \mathbf u_z$. Posso reinterpretare questo risultato considerando che $A = \pi R^2$ e definendo (analogamente al dipolo elettrico) il momento magnetico della spira $\mathbf m = i A \mathbf n$. In questo caso $\mathbf n = \mathbf u_z$ quindi $\mathbf B(z \gg R) \approx \frac{\mu_0}{2\pi} \frac{\mathbf m}{z^3}$.
+
+\subsubsection{Due fili rettilinei indefiniti e paralleli}
+Nel piano $xy$ un filo rettilineo coincidente con l'asse $y$ è sede della corrente $I_1$. L'altro filo posto a dx del precedente alla distanza $d$ è sede della corrente $I_2$. Determinare il campo di induzione in tutto lo spazio e vedere se ci sono punti dell'asse delle ascisse nei quali esso è nullo (utilizzando $I_1=I_\mathrm n$ del problema precedente). Determinare la forza per unità di lunghezza tra i due fili.
+
+\underline{Def:} Il campo di induzione è somma dei campi prodotti dai fili $\vec B(P)=\vec B_1+\vec B_2$. Suddivido il piano nelle zone I a sx del primo filo, II tra i due fili, III a dx del secondo filo. Nelle zone I e III i campi di induzione sono concordi a $\hat k$ e $-\hat k$ rispettivamente. Nella zona II i campi di induzione sono discordi. Nelle zone I e III quindi $\vec B=\mp\frac{\mu_0}{2\pi}\big(\frac{I_1}{\rho_1}+\frac{I_2}{\rho_2}\big)\hat k$, il segno in base alla zona scelta. Nella zona II $\vec B=\frac{\mu_0}{2\pi}\big(\frac{I_2}{\rho_2}-\frac{I_1}{\rho_1}\big)\hat k$ che si annulla quando $\frac{I_1}{\rho_1}=\frac{I_2}{\rho_2}\;\Rightarrow\;$
+
+\subsubsection{Filo metallico flessibile in campo di induzione uniforme}
+Un filo metallico perfettamente flessibile ed inestensibile, di lunghezza $L$, è percorso da una corrente costante $I$ ed è immerso in un campo di induzione uniforme $\vec B$. Determinare la configurazione di equilibrio supponendo che l'unica forza esterna agente è quella magnetica\\
+\underline{Soluzione:} la forza agente su un elemento di conduttore è $\mathrm d\vec F=I\mathrm d\vec l\times\vec B$, e può essere nulla solo se $\mathrm d\vec l\parallel\vec B$. Per la geometria del sistema questo è impossibile quindi $\oint \mathrm d\vec F\neq \vec 0$; per l'equilibrio si deve avere necessariamente una forza interna  oltre a $\mathrm d\vec F$. L'unica possibilità compatibile con le ipotesi è che nel filo si generano delle tensioni $\mathrm d\vec\tau_1$ e $\mathrm d\vec\tau_2$. Per l'elemento di filo: $0=\mathrm d\vec F+\mathrm d\vec\tau_1+\mathrm d\vec\tau_2=I\mathrm d\vec l\times\vec B-2\tau\sin\frac{\mathrm d\theta}{2}\,\hat n=I\mathrm d\vec l\times\vec B-\tau\,\mathrm d\theta\,\hat n=I\mathrm d\vec l\times\vec B+\tau\frac{dl}{r}\,\hat n$ dove $r$ è il raggio di curvatura locale e $\hat n$ punta verso l'esterno del cerchio osculatore; quindi la tensione agente sull'elemento ha azione centripeta e la forza magnetica ha azione centrifuga. Va osservato che $\mathrm d\vec F\perp\vec B$ ed è equilibrata dalla tensione interna, che quindi è perpendicolare a $\vec B$. Perciò nella configurazione di equilibrio il filo si dispone in un piano ortogonale a $\vec B$, cioè $\mathrm d\vec l\perp\vec B$. Quindi l'equazione di equilibrio diventa $IB\mathrm dl-\tau\frac{dl}{r}=IB-\frac{\tau}{r}=0$. Per capire la forma assunta dal filo, va osservato che $r=\frac{\tau}{IB}$ e tutte le quantità $\tau,I,B$ sono uniformi lungo il filo, quindi anche $r$ è uniforme e la configurazione è una circonferenza. Ma poiché $2\pi L=r$ si ha $\tau=\frac{LIB}{2\pi}$. È importante osservare che, all'equilibrio, il verso della corrente circolante è tale che, assegnato $\vec B$, la forza magnetica indotta è centrifuga. Riassumendo, il filo si dispone in un piano ortogonale a $\vec B$, assume forma circolare e si dispone in modo tale che $vec B$ induce una forza centrifuga equilibrata dalla tensione $\tau\propto LIB$
+
+\subsubsection{Forza magnetica agente su un circuito chiuso}
+Calcolare la forza risultante su un circuito chiuso percorso da corrente $I$ e disposto in un campo di induzione magnetica costante $\vec B$\\
+\underline{Soluzione:} il campo di induzione è $\vec B=B\,\hat u$ e la forza agente sul circuito è $\vec F=I\oint\mathrm d\vec l\times\vec B=IB(\oint\mathrm d\vec l)\times \vec B=0$ perché il versore $\hat u$ è per ipotesi costante, quindi può essere portato fuori dall'integrale, che è banalmente nullo. Non è nullo invece l'integrale $\oint \mathrm dl$ che rappresente ne rappresenta la lunghezza
+
+\subsubsection{Forza magnetica agente un conduttore non chiuso}
+Calcolare la forza risultante agente su un tratto conduttore di estremi $C$ e $D$, percorso da corrente $I$ ed immerso in un campo di induzione magnetica uniforme $\vec B$\\
+\underline{Soluzione:} $\vec F=I\int_C^D\mathrm d\vec l\times \vec B=IB(\int_C^D\mathrm d\vec l)\times\hat u=IB\,\overrightarrow{CD}\times\vec u$. La forza risultante dipende solo dalla posizione relativa degli estremi del conduttore, e non dalla sua lunghezza e forma
+
+\subsubsection{Circuito ad U con barra mobile immerso in un campo di induzione uniforme}
+Un conduttore filiforme è piegato ad U, con i rami paralleli a distanza $L$. Sulla U è disposta una barra conduttrice che chiude il circuito. Questo forma un rettangolo il cui piano è ortogonale alla direzione di $\vec B$ uniforme e costante. La barra scorre parallelamente a se stessa con velocità $\vec V$, garantendo il contatto elettrico con il conduttore. Calcolare la f.e.m. indotta\\
+\underline{Soluzione:} fissato un s.d.r. $\hat i\hat j\hat k$, le cariche mobili nella barra sono trascinate con velocità $\vec v_{tr}=V\hat j$ nel campo di induzione $\vec B=B\hat k$, e quindi risentono della forza di Lorentz che corrisponde al campo e.m. indotto $\vec E_i=V\hat\jmath\times B\hat k=VB\,\hat\imath$. La f.e.m. indotta è la circuitazione $\oint\vec E_i\cdot\mathrm d\vec s=-VBL$. Il flusso concatenato con il circuito è $\Phi_{S(\gamma)}=\iint_{S(\gamma(t))}\vec B\cdot\hat n\mathrm dS=B|S(\gamma(t))|=BLx(t)$, essendo $x(t)$ la distanza della barra dal lato della U. Per la legge di Lenz, $-\frac{\mathrm d\Phi}{\mathrm dt}=-\frac{\mathrm d}{\mathrm dt}\{BLx(t)\}=-BLV$
+
+\subsubsection{Nastro di carica in moto uniforme e forza indotta su un filo}
+È dato un nastro nel piano $xy$ descritto dalla regione $x\in[-\frac a2,\frac a2]$. Il nastro è carico uniformemente con densità $\sigma_0>0$ e si muove con velocità $\vec v=v_0\,\hat\jmath$ parallelamente al lato lungo. Calcolare il campo di induzione in un punto $P$ del piano $xy$ a distanza $d$ dal bordo destro del nastro. Alla distanza $d$ viene posto un filo rettilineo nel quale scorre la corrente $I_\mathrm f$, determinare la forza pr unità di lunghezza indotta dal nastro sul filo.
+
+\underline{Soluzione:} il moto delle cariche genera una densità di corrente $\vec J_\mathrm n=\sigma_0v_0\,\hat\jmath$ a cui corrisponde una corrente circolante in direzione $\hat\jmath$ di intensità $I_\mathrm n=\int_{-a/2}^{a/2}\vec J_\mathrm n\cdot\hat n\,\mathrm dx=\sigma_0v_0a$. Posso pensare di suddividere il nastro in fili rettilinei indefiniti infinitesimi larghi $\mathrm dx$. Per capire la corrente che scorre in ognuno di essi scrivo la corrente per unità di larghezza del nastro che è $\frac{I_\mathrm n}a$. Visto che un filo è largo $\mathrm dx$ allora in ogni filo scorre la corrente $\mathrm dI=\frac {I_\mathrm n}a\,\mathrm dx$. Il contributo di un filo al campo di induzione in $P$ è $\mathrm d\vec B=-\frac{\mu_0}{2\pi}\frac 1x\frac{I_\mathrm n}a\,\mathrm dx\,\hat k$, dove $x$ è la distanza di $P$ dal generico filo infinitesimo. Tutti i contributi dei vari fili infinitesimi sono paralleli fra di loro e concordi quindi basta integrarli $\vec B=-\frac{\mu_0I_\mathrm n}{2\pi a}\int_d^{d+a}\frac{\mathrm dx}{x}=-\frac{\mu_oI_\mathrm n}{2\pi a}\log(\frac{d+a}{d})$.\\
+Il campo di induzione generato dalla corrente $I_\mathrm n$ induce sugli elementi di corrente del filo la forza $\mathrm d\vec F=I_\mathrm f\,\mathrm dy\,\hat\jmath\times\frac{\mu_0I_\mathrm n}{2\pi a}\log(\frac{d+a}{d})(-\hat k)=-\frac{\mu_0I_\mathrm nI_\mathrm f}{2\pi a}\log(\frac{d+a}a)\mathrm dy\,\hat\imath$. Questa rappresenta la forza indotta dal nastro sul filo, per unità di lunghezza del filo.
+
+\subsubsection{Effetto Hall}
+Viene fatta scorrere corrente in una piastra conduttrice in senso longitudinale
+
+\subsection{Equazioni di Maxwell stazionarie nel vuoto}
+\begin{tabular}{c|llll}
+	& Simbolica & Integrale & Locale & \\
+	\hline
+	I & $\Phi(\mathbf E) = Q_{int}/\epsilon_0$ & $\int \mathbf E(\mathbf r) \cdot \mathbf n \de\varsigma = \frac 1{\epsilon_0} \int \rho(\mathbf r)\,\de\upsilon$ & $\dive \mathbf E(\mathbf r) = \frac1{\epsilon_0}\rho(\mathbf r)$\\
+	
+	II & $\Phi(\mathbf B) = 0$ & $\int \mathbf B(\mathbf r) \cdot \mathbf n\de\varsigma = 0$ & $\dive \mathbf B(\mathbf r) = 0$\\
+	
+	III & $\Gamma(\mathbf E) = 0$ & $\oint \mathbf E(\mathbf r) \cdot \de\mathbf s = 0$ & $\rot \mathbf E(\mathbf r) = 0$\\
+	
+	IV & $\Gamma(\mathbf B) = \Phi(\mu_0 \mathbf J)$ & $\oint \mathbf B(\mathbf r) \cdot \de\mathbf s = \mu_0 \int \mathbf J(\mathbf r) \cdot \mathbf n \de\varsigma$ & $\rot \mathbf B(\mathbf r) = \mu_0 \mathbf J(\mathbf r)$
+\end{tabular}\\
+Campo elettrico e campo magnetico sono entità separate
+
+
+
+	\section{Campo elettrico e magnetico nella materia}
+\subsubsection{Condizioni di raccordo all'interfaccia}
+La situazione generale è una superficie regolare $\Sigma$, che porta carica superficiale $\sigma$ e correnti $\mathbf K$, e separa le regioni 1 e 2 di spazio con materia diversa. Si applicano la I e II equazione di Maxwell ad una pillbox gaussiana a cavallo dell'interfaccia. La III e IV equazione di Maxwell si applicano ad un cammino stokesiano a cavallo dell'interfaccia; il piano di giacitura del cammino ha $\mathbf t$ come versore normale (quindi tangente a $\Sigma$).\\
+Con la I equazione si trova $(\mathbf D_2 - \mathbf D_1) \cdot \mathbf n = \sigma$, cioè la componente normale di $\mathbf D$ ha una discontinuità a salto. Nel vuoto è $\epsilon = \epsilon_0$ quindi $(\mathbf E_2 - \mathbf E_1) \cdot \mathbf n = \sigma/\epsilon_0$.\\
+Con la II equazione si trova invece $(\mathbf B_2 - \mathbf B_1) \cdot \mathbf n = 0$, cioè la componente normale di $\mathbf B$ è continua.\\
+Con la III equazione si trova $(\mathbf E_2 - \mathbf E_1) \cdot (\mathbf t \cdot \mathbf n) = 0$, cioè la componente tangente all'interfaccia è continua ($\partial_t \mathbf B$ è finito è $\de\varsigma \approx 0$).\\
+Con la IV equazione
+
+\subsection{Conduttori}
+%\subsubsection{Sulla superficie di un conduttore il campo non ha componente tangenziale}
+%Dalla precedente, se il mezzo 1 è conduttore allora $E_{t2}=0$, cioè il campo ha solo componente normale alla superficie e presenta discontinuità fra interno $\mathbf E=0$ ed esterno $\mathbf E=E\mathbf n$.
+
+\subsubsection{Teorema di Coulomb}
+Nella precedente si determina $E$ applicando Gauss ad un cilindro metà nel conduttore e metà fuori, con altezza infinitesima rispetto al raggio. Al flusso contribuisce solo la base esterna quindi $\Phi(\mathbf E)=\rho/\epsilon \Rightarrow E\de S=\sigma\de S/\epsilon$. 
+
+\subsubsection{Pressione elettrostatica}
+Le cariche elettriche presenti sulla superficie $S$ di un conduttore costituiscono uno strato invalicabile per le cariche elettriche; questo si traduce nella presezna di pressioni elettrostatiche dovute alle cariche. Considero una superficie $\de S$ e il campo elettrico in vicinanza $\mathbf E=\frac{\sigma}{\epsilon}\mathbf n$ (internamente è $\mathbf E=0$). Lo decompongo come $\mathbf E = \mathbf E^{(\de S)} + \mathbf E^{(S-\de S)}$ e $\de S$ è come un piano indefinito quindi $\mathbf E^{(\de S)}=\frac{\sigma}{2\epsilon}\mathbf n$ (internamente è $\mathbf E^{(\de S)}=-\frac{\sigma}{2\epsilon}\mathbf n$). Dalle precedenti segue che $\mathbf E^{(S-\de S)}=\frac{\sigma}{2\epsilon}\mathbf n$ anche internamente. La forza agente su $\de S$ è quindi $\de F=\sigma\de S\,\mathbf E^{(S-\de S)}$ da cui segue la pressione $\mathbf p = \frac{\sigma^2}{2\epsilon}\mathbf n=\frac{\epsilon E^2}2\mathbf n$. Essa è proporzionale alla densità di energia del campo elettrostatico.
+
+\subsubsection{Potenziale della sfera indotto da carica puntiforme}
+Determinare il potenziale di una sfera conduttrice scarica di raggio $R$, considerando che una carica puntiforme $Q$ è posta a distanza $D$ dal centro della sfera.\\
+\underline{Soluzione:} Per definizione di conduttore il potenziale $V$ è uniforme in tutta la sfera. Per semplicità posso calcolarlo nel centro e sarà dato dal potenziale generato dalla carica puntiforme sommato a quello generato dalla carica indotta $V=\frac{Q}{4\pi\epsilon r}+V^\prime$. Poiché le cariche indotte si trovano tutte alla stessa distanza $R$ e sono globalmente nulle, deve essere $V^\prime=0$. Quindi, il potenziale della sfera è ovunque determinato solo dalla carica puntiforme
+
+\subsubsection{Guscio conduttore senza carica interna}
+Un conduttore scarico ha una cavità al suo interno in cui non sono presenti cariche. Ho due approcci per determinare il campo nella cavità e distribuzione della carica nel conduttore.
+GAUSS: prendo una superficie di Gauss nel conduttore che racchiude la cavità; per definizione di conduttore $\mathbf E(\mathcal G)=\mathbf 0$ quindi la carica netta racchiusa è nulla. Nella cavità non sono presenti cariche quindi nemmeno su $S_{int}$; tuttavia devo escludere la possibilità che $S_{int}$ abbia delle regioni con carica uguale ed opposta: se così fosse avrei un campo nella cavità e una circolazione non nulla lungo un cammino passante per la cavità, ma questo non è possibile per la conservatività. Se il conduttore è carico, tale carica si dispone su $S_{ext}$. Prendendo una superficie di Gauss nella cavità si trova che il campo nella cavità è nullo.\\
+POISSON: nella cavità vale l'equazione di Poisson $\nabla^2 V(r) = 0$ con la condizione $V(S_{int}) = \bar V$. Per definizione di conduttore $\bar V$ è costante nel conduttore quindi la soluzione (unica) è $V(r)=\bar V$. Poiché $\mathbf E = -\nabla V$, il campo nella cavità è nullo. Per il teorema di Coulomb applicato a $S_{int}$, la carica su di essa è quindi nulla.
+
+\subsubsection{Guscio conduttore con carica interna}
+È presente una carica $q$ nella cavità del conduttore. A differenza del precedente, la carica nella cavità deve essere bilanciata da una carica $-q$ su $S_{int}$. Di conseguenza su $S_{ext}$ si avrà la carica $q$, oltre alla carica eventualmente portata dal conduttore se esso non è scarico; su $S_{ext}$ quindi è presente tutta la carica contenuta nel conduttore. [sul picasso viene approfondita l'indipendenza fra problema interno ed esterno]
+
+\subsubsection{Capacità del condensatore piano}
+Dal doppio piano di carica segue che il campo fra le armature è $\mathbf E = \frac\sigma\epsilon \mathbf n$ quindi la differenza di potenziale è $\Delta V = -\int_A^B \frac\sigma\epsilon \mathbf n \cdot \de x \mathbf n = -\frac{\sigma d}\epsilon$. Per definizione di capacità $C=\frac{Q}{\Delta V} = \sigma S \frac{\epsilon}{\sigma d} = \frac{\epsilon S}d$.
+
+\subsubsection{Energia di un condensatore carico}
+Un condensatore di capacità $C$ è caricato fino ad assumere la d.d.p. $\Delta V$ tra le armature. Calcolare l'energia elettrostatica immagazzinata\\
+\underline{Def:} l'energia elettrostatica di una distribuzione superficiale di carica è $U=\frac 12\int\sigma V\,\mathrm dS$. Le densità di carica sulle armature valgono $\pm\sigma_0$ mentre i potenziali sono $V_A$ e $V_B$, quindi $U=\frac 12 V_A\int\sigma_0\,\mathrm dS+\frac 12 V_B\int(-\sigma_0)\,\mathrm dS=\frac 12 Q\Delta V$. Poiché $C=\frac{Q}{\Delta V}$ si ha $U=\frac 12 C(\Delta V)^2$
+
+\subsection{Dielettrici}
+\subsubsection{Polarizzazione dielettrica}
+In riferimento a un volume infinitesimo di dielettrico posso definire il momento di dipolo medio $\langle \mathbf p \rangle = \frac1N \sum_{i=1}^N \mathbf p_i$. Spesso non conosco quanti dipoli ci sono nel volumetto ma è nota la loro densità volumetrica $n = N/V$. Le grandezze che intervengono nel meccanismo della polarizzazione si esprimono in termini del campo vettoriale polarizzazione dielettrica $\mathbf P = \frac1V \sum_{i=1}^N \mathbf p_i = n \langle \mathbf p \rangle$. L'utilità di questo è che un volume di dielettrico avrà momento di dipolo $\mathbf P(\mathbf x) \de V$. Nel caso più generale ho atomi e molecole di natura diversa nel volume infinitesimo, e ogni tipo avrà il suo momento medio e la sua densità nel volume infinitesimo quindi $\mathbf P = \sum_k n_k \langle \mathbf p_k \rangle$.
+
+\subsubsection{Magnetizzazione dielettrica}
+Analogamente alla polarizzazione ogni atomo e molecola è visto come una spira magnetica, in virtù del moto orbitale e di spin degli elettroni. La materia contenuta nel volume infinitesimo ha complessivamente un momento magnetico dato dal campo vettoriale di magnetizzazione $\mathbf M = \sum_k n_i \langle \mathbf m_i \rangle$. Dall'interazione della materia con $\mathbf B$ risulta un allineamento dei $\mathbf m$ con $\mathbf B$ e quindi le correnti atomiche scorrono prevalentemente in piani $\perp$ a $\mathbf B$. Tali correnti sono descritte da $J_{mag}$. Se $\mathbf M$ è uniforme, all'interno del materiale le correnti si compensano mentre sui bordi no, quindi risulta una corrente macroscopica di superficie. Se $\mathbf M$ è non uniforme allora si hanno internamente non c'è piena compensazione e si generano correnti macroscopiche di volume. Si dimostra che $\oint \mathbf M \cdot \de\mathbf s = \int \mathbf J_{mag} \cdot \mathbf n \de\varsigma$. [VEDI IRODOV]
+
+\subsubsection{Equazioni costitutive della materia}
+Si fanno le ipotesi di isotropia e uniformità del dielettrico ed $|\mathbf E|$ non troppo grande. La materia del dielettrico si polarizza parallelamente al campo quindi $\langle \mathbf p \rangle \propto \epsilon_0\mathbf E$ dove la costante è la polarizzabilità molecolare $\alpha$. Per il campo di polarizzazione $\mathbf P = n \langle \mathbf p \rangle = n \alpha \epsilon_0 \mathbf E$ si definisce la suscettività elettrica $\chi = n\alpha$ (è sempre $\chi > 0$) quindi $\mathbf P = \chi\epsilon_0 \mathbf E$. Dal momento che $\mathbf P \propto \mathbf E$ anche $\mathbf D \propto \mathbf E$. La costante è la permittività elettrica $\epsilon$ e si determina da $\mathbf D = \epsilon_0 \mathbf E + \chi \epsilon_0 \mathbf E = \epsilon_0 (1+\chi) \mathbf E$. Fa comodo definire la permittività elettrica relativa $\epsilon_r = \epsilon/\epsilon_0 = 1 + \chi$. In definitiva $\mathbf D = \epsilon \mathbf E$ con $\epsilon = \epsilon_r \epsilon_0$. [EQ COST PER MAGNETISMO SU IRODOV]
+
+\subsubsection{Cariche di polarizzazione e correnti di magnetizzazione}
+Si dimostrano le due relazioni $\sigma_{pol} = \mathbf P \cdot \mathbf n$, $\rho_{pol} = -\dive\mathbf P$, $\rot\mathbf M = \mathbf J_{mag}$. Per la prima, considero un elemento  $\de S$ di superficie esterna del dielettrico, di normale $\mathbf n$. Il campo esterno $\mathbf E$, che in generale ha direzione arbitraria e forma l'angolo $\theta$ con $\mathbf n$, polarizza la materia del dielettrico. Se $\mathbf E \perp \mathbf n$ allora i dipoli sono paralleli a $\de S$ e la carica netta su $\de S$ è nulla. Diversamente, su $\de S$ sarà presente una densità di carica $\sigma = \de Q/\de S$ in cui $Q$ è identificata dai dipoli, di momento medio $\langle \mathbf p\rangle = q \mathbf d$, presenti nel volume del cilindretto di base $\de S$ e altezza $d\cos\theta$. Conoscendo la densità volumica $n$ dei dipoli, la carica è $\de Q = q n d \cos\theta \de S = qn\mathbf d \cdot \mathbf n \de S$ quindi $\sigma_{pol}= n \langle \mathbf p\rangle \cdot \mathbf n = \mathbf P \cdot \mathbf n$\\
+Per la seconda relazione,\\
+Per la terza, 
+
+\subsubsection{Comportamento della materia al magnetismo}
+Diamagnetismo: materia con tanti atomi con orbite elettroniche antiorarie quanti con orbite orarie, quindi complessivamente non ha un momento magnetico proprio. In presenza di $\mathbf B$ esterno si ha un $\Delta\omega$ lungo l'orbita di conseguenza un $\Delta \mathbf L$ quindi un $\Delta \mathbf m$ (essendo $\mathbf m = -e \mathbf L/2m_e$). In ogni caso (orbita oraria o antioraria) si vede che $\Delta\mathbf m$ è antiparallelo a $\mathbf B$ con comportamento lineare.\\
+Paramagnetismo: meccanismo analogo al diamagnetismo ma $\Delta \mathbf m$ è concorde a $\mathbf B$.\\
+Ferromagnetismo: meccanismo analogo al paramagnetismo ma con comportamento non lineare.
+
+\subsubsection{I equazione di Maxwell nei dielettrici}
+Il teorema di Gauss per $\mathbf E = \mathbf E_{lib} + \mathbf E_{pol}$ fornisce $\int \dive\mathbf E  \de\upsilon = (Q_{lib} + Q_{pol})/\epsilon$. Conoscendo la relazione fra $\rho_{pol}$ e $\mathbf P$ si ottiene $\int \dive(\epsilon\mathbf E +  \mathbf P)\de\upsilon = \int \rho_{lib} \de\upsilon$ da cui $\dive\mathbf D = \rho_{lib}$. Un'altra forma, nell'ipotesi di dielettrico uniforme ($\epsilon$ costante) si ottiene considerando che $\mathbf D = \epsilon \mathbf E$ quindi $\dive\mathbf E = \rho_{lib} /\epsilon$. Rispetto al caso nel vuoto è come se le cariche si riducessero di un fattore $\epsilon_0/\epsilon$, il fenomeno è dovuto al campo elettrico delle molecole polarizzate del dielettrico che si oppone a quello esterno. 
+
+\subsubsection{II e III equazione di Maxwell nei dielettrici}
+Continuano a valere $\dive\mathbf B = 0$ e $\rot\mathbf B = 0$.
+
+\subsection{IV equazione di Maxwell}
+Considerando anche il contributo di $\mathbf J_{mag}$ ho $\oint \mathbf B \cdot \de\mathbf s = \mu_0 \int (\mathbf J_{lib} + \mathbf J_{mag}) \cdot \mathbf n\de\varsigma$. Considerando la relazione fra $\mathbf M$ e $\mathbf J_{mag}$, si può mettere nella forma $\oint (\mathbf B - \mu_0 \mathbf M) \cdot \de\mathbf s = \mu_0 \int \mathbf J_{lib} \cdot \mathbf n\de\varsigma$. Se definisco $\mathbf H = \frac 1{\mu_0}\mathbf B - M$ ho $\oint \mathbf H \cdot \de\mathbf s = I_{lib}$
+
+\subsubsection{Cavità in un dielettrico}
+La cavità è stretta e lunga, in direzione del campo esterno. Prendo un cammino metà nel dielettrico e metà nella cavità, i tratti trasversali sono trascurabili. Deve essere $\int \mathbf E_{diel} \cdot \de\mathbf s + \int \mathbf E_{cav} \cdot \de\mathbf s = 0$ ma per come è stata presa la cavità risulta $E_{diel} l - E_{cav} l = 0$ da cui $E_{diel} = E_{cav}$
+
+\subsubsection{Cavo coassiale}
+Un cavo coassiale è un conduttore cilindrico indefinito di raggio $R_1$ circondato da una corona cilindrica di dielettrico con raggio esterno $R_2$. La carica sul conduttore è determinata dalla densità lineare $\lambda$. Suppongo che il dielettrico è lineare ed isotropo. Il campo elettrico nel conduttore è $\mathbf E(r < R_1) = 0$. All'esterno del cavo ha direzione radiale (per simmetria) e modulo tramite Gauss, quindi $\mathbf E(r > R_2) = \frac{\lambda}{2\pi \epsilon_0 r} \mathbf u_\rho$. Nel dielettrico vale $\Phi(\mathbf D) = Q_{lib}$ dove $Q_{lib} = \lambda h$ e $\Phi(\mathbf D) = D(r) 2\pi r h$, quindi $\mathbf D(R_1 < r < R_2) = \frac{\lambda}{2\pi r} \mathbf u_\rho$. Per il campo elettrico nel dielettrico serve la relazione costitutiva del dielettrico: ipotizzato lineare vale l'equazione $\mathbf D = \epsilon \mathbf E$ da cui $\mathbf E(R_1 < r < R_2) = \mathbf D/\epsilon = \frac{\lambda}{2\pi \epsilon r} \mathbf u_\rho$
+
+\subsection{Equazioni di Maxwell stazionarie nella materia}
+\begin{tabular}{c|llll}
+	& Simbolica & Integrale & Locale & \\
+	\hline
+	I & $\Phi(\mathbf D) = Q_{lib}$ & $\int \mathbf D(\mathbf r) \cdot \mathbf n \de\varsigma = \int \rho_{lib}(\mathbf r) \,\de\upsilon$ & $\dive \mathbf D(\mathbf r) = \rho_{lib}(\mathbf r)$\\
+	
+	II & $\Phi(\mathbf B) = 0$ & $\int \mathbf B(\mathbf r) \cdot \mathbf n \de\varsigma = 0$ & $\dive \mathbf B(\mathbf r) = 0$\\
+	
+	III & $\Gamma(\mathbf E) = 0$ & $\oint \mathbf E(\mathbf r) \cdot \de\mathbf s = 0$ & $\rot \mathbf E(\mathbf r) = 0$\\
+	
+	IV & $\Gamma(\mathbf H) = \Phi(\mathbf J_{lib})$ & $\oint \mathbf H(\mathbf r) \cdot \de\mathbf s = \int \mathbf J_{lib}(\mathbf r) \cdot \mathbf n \de\varsigma$ & $\rot \mathbf H(\mathbf r) = \mathbf J_{lib}(\mathbf r)$
+\end{tabular}\\
+Campo elettrico e campo magnetico sono entità separate
+
+
+
+	\section{Campo elettromagnetico}
+\subsubsection{Natura relativa dei campi elettrici e magnetici}
+In un riferimento inerziale $\Sigma= Oxyz$ fisso nello spazio è data una particella di carica $q$ in moto con velocità $\mathbf v$. Nello spazio è quindi presente $\mathbf E$ generato dalla particella e $\mathbf B$ dovuto al suo moto. Preso un altro riferimento inerziale $\Sigma^\prime = O^\prime\xi\eta\zeta$ in moto uniforme con la particella, in questo riferimento la particella è ferma quindi si ha solo $\mathbf E^\prime$.\\
+Ora la particella è ferma in $\Sigma$ mentre $\Sigma^\prime$ continua muoversi di moto uniforme. In $\Sigma$ si avrà solo $\mathbf E$ mentre in $\Sigma^\prime$ sia $\mathbf E^\prime$ che $\textbf B^\prime$\\
+La presenza dei fenomeni elettrici e magnetici dipende quindi dal sistema di riferimento scelto. Prescindendo da esso si può dedurre l'esistenza di una entità unica, il campo elettromagnetico, le cui manifestazioni dipendono dal riferimento in cui lo si studia.
+
+\subsubsection{Trasformazione non relativistica del campo elettromagnetico}
+La carica $q$ si muove rispetto a $\Sigma$ con velocità $\mathbf v$ in una regione in cui sono presenti $\mathbf E$ e $\mathbf B$. La forza di Lorentz agente sulla carica è $\mathbf F = q(\mathbf E + \mathbf v \times \mathbf B)$. Nel riferimento $\Sigma^\prime$ solidale alla particella in moto la forza è $\mathbf F^\prime = q\mathbf E^\prime$. Nel caso non relativistico la forza è invariante quindi $\mathbf F^\prime = \mathbf F$ cioè $\mathbf E^\prime = \mathbf E + \mathbf v \times \mathbf B$. Per il campo magnetico la formula si dimostra con la teoria della relatività ristretta ed è $\mathbf B^\prime = \mathbf  B - \frac{\mathbf v}{c^2} \times \mathbf E$. È notevole osservare che nelle leggi di trasformazione compaiono in ogni caso sia $\mathbf E$ che $\mathbf B$.
+
+\subsection{Induzione elettromagnetica}
+\subsubsection{Induzione elettromagnetica, legge di Faraday e di Lenz}
+Dall'esperimento di Faraday si può dedurre la legge di Faraday $fem \propto \fracd{\Phi(\mathbf B)}{t}$. La variazione di $\Phi$ si può imputare a diverse cause: spostamento/deformazione del circuito indotto, spostamento del circuito inducente, variazione del campo magnetico inducente. Il segno della $fem$ è espresso dalla legge di Lenz "la corrente causata dalla f.e.m. indotta genera un campo magnetico che si oppone al campo magnetico inducente". Si possono riassumere le precedenti leggi nella formuala $fem = -\fracd{\Phi(\mathbf B)}{t}$.\\
+Per chiarire le idee prendo un sistema solenoide inducente e spira indotta. Tenendo fermi i componenti e aumentando la corrente nel solenoide aumenta anche $\Phi(\mathbf B)$ quindi la f.e.m. indotta fa circolare una corrente nel verso in cui il relativo campo magnetico va ad opporsi all'aumento di $\Phi(\mathbf B)$. Viceversa, se la corrente viene diminuita allora diminuisce anche $\Phi(\mathbf B)$ e il campo magnetico della corrente indotta va ad opporsi alla diminuzione di $\Phi(\mathbf B)$. I casi con corrente costante e spostamento dei circuiti si ragiona in modo analogo.
+
+\subsubsection{Circuito fermo in campo magnetico variabile}
+Supponiamo che $\mathbf E = 0$ quindi essendo il circuito fermo, sulle cariche in esso non agisce la forza di Lorenz. Tuttavia si osserva una corrente e l'unica conclusione è che nel conduttore si generi un campo elettrico responsabile della corrente. In maniera più generale, la variazione di $\mathbf B$ è responsabile della comparsa di $\mathbf E$, che si manifesta nel conduttore come moto di cariche. La legge dell'induzione elettromagnetica si esplicita $\oint \mathbf E_{ind} \cdot \de\mathbf s = -\int \fracp{\mathbf B}t \cdot \mathbf n \de\varsigma$, passando la derivata dentro l'integrale poiché il dominio di integrazione è costante. Se $\mathbf E \neq 0$ allora i due contributi si sommano per dare il campo elettrico totale $\mathbf E + \mathbf E_{ind}$  in cui il primo termine soddisfa alle equazioni di Maxwell stazionarie.
+
+\subsubsection{Circuito mobile in campo magnetico costante}
+
+\subsubsection{III equazione di Maxwell}
+La forma più generale dell'equazione della legge dell'induzione elettromagnetica è $\oint (\mathbf E + \mathbf v_{tr} \times \mathbf B) \cdot \de\mathbf s = -\int \fracp{\mathbf B}{t} \cdot \mathbf n \de\varsigma$. Il primo membro rappresenta, per quanto detto sulla natura relativa del campo elettromagnetico, il campo elettrico nel sistema di riferimento in cui il circuito è in quiete. Per la trasformazione galileiana della velocità sarebbe $\mathbf v = \mathbf v_{der} + \mathbf v_{tr}$ ma $\mathbf v_{der} \parallel \mathbf \de\mathbf s$. \scriptsize La formula di dimostra introducendo l'operatore di derivata materiale $\fracd{}{t} = \fracp{}{t} + \mathbf v \cdot \nabla$ e l'identità $(\mathbf v \cdot \nabla)\mathbf B = \rot(\mathbf B \times \mathbf v) + \mathbf v\, \dive\mathbf B$.  [COME SI DIMOSTRA?]\normalsize\\
+Di solito si considerano circuiti fermi quindi $\mathbf v_{tr} = 0$ e l'equazione diventa $\oint \mathbf E \cdot \de\mathbf s = -\int \fracp{\mathbf B}{t} \cdot \mathbf n \de\varsigma$
+
+\subsection{Corrente di spostamento}
+\subsubsection{Paradosso del condensatore come circuito aperto}
+SI considera un condensatore (piano senza perdita di generalità) carico che si sta scaricando su una resistenza, quindi $i \neq 0$. Prendo una curva $\Gamma$ che concatena il filo collegato a una delle armature; delle infinite superfici su $\Gamma$ ne predo due, $\Sigma_1$ è quella di area minima (che quindi interseca il filo), $\Sigma_2$ è una superficie fra le due armature che non interseca nulla. Applico la IV equazione in forma integrale: per $\Sigma_1$ vale $\oint \mathbf B \cdot \de\mathbf s = \mu_0 \int \mathbf J \cdot n\de\varsigma$ mentre per $\Sigma_2$ vale $\oint \mathbf B \cdot \de\mathbf s = 0$. Questo non può essere possibile per 2 motivi: $i \neq 0$ per ipotesi e rifacendosi al filo rettilineo si ha $\mathbf B \neq 0$; a parità di $\Gamma$ il flusso dipende dalla superficie scelta e questo non è possibile [perchè?].
+
+\subsubsection{IV equazione di Maxwell}
+Nel caso non stazionario è $\fracp{\rho}{t} \neq 0$. L'intuizione di Maxwell è stata di usare la I equazione di Maxwell $\dive\mathbf D = \rho_{lib}$ nell'equazione di continuità $\dive\mathbf J_{lib }= -\fracp{\rho_{lib}}t$ in modo da ottenere $\dive(\mathbf J_{lib} + \fracp{\mathbf D}t) = 0$ e fare, nella legge di Ampère, la sostituzione $\mathbf J_{lib} \to \mathbf J_{lib} + \fracp{\mathbf D}t$ dove il secondo termine è la corrente di spostamento $\mathbf J_d = \fracp{\mathbf D}t$. Nel vuoto
+
+\subsection{Equazioni di Maxwell}
+\begin{tabular}{ll}
+	I & Legge di Gauss\\
+	II & Legge di Gauss magnetica, inesistenza di monopoli magnetici,\\
+	III & Conservatività, Legge di Faraday-Lenz, induzione elettromagnetica\\
+	IV & Legge di Ampère-Maxwell, correnti concatenate, corrente di spostamento
+\end{tabular}
+\subsubsection{Nella materia}
+\begin{tabular}{c|llll}
+	& Simbolica & Integrale & Locale & \\
+\hline
+	I & $\Phi(\mathbf D) = Q_{lib}$ & $\int \mathbf D(\mathbf r,t) \cdot \mathbf n \de\varsigma = \int \rho_{lib}(\mathbf r,t) \,\de\upsilon$ & $\dive \mathbf D(\mathbf r,t) = \rho_{lib}(\mathbf r,t)$\\
+	
+	II & $\Phi(\mathbf B) = 0$ & $\int \mathbf B(\mathbf r,t) \cdot \mathbf n \de\varsigma = 0$ & $\dive \mathbf B(\mathbf r,t) = 0$\\
+	
+	III & $\Gamma(\mathbf E) = -\fracd{\Phi(\mathbf B)}t$ & $\oint \mathbf E(\mathbf r,t) \cdot \de\mathbf s = -\int \fracp{\mathbf B}t(\mathbf r,t) \cdot \mathbf n \de\varsigma$ & $\rot \mathbf E(\mathbf r,t) +\fracp{\mathbf B}t(\mathbf r,t) = 0$\\
+	
+	IV & $\Gamma(\mathbf H) = \Phi(\mathbf J_{lib} + \mathbf J_d)$ & $\oint \mathbf H(\mathbf r,t) \cdot \de\mathbf s = \int [\mathbf J_{lib}(\mathbf r,t) + \fracp{\mathbf D}t(\mathbf r,t)] \cdot \mathbf n \de\varsigma$ & $\rot \mathbf H(\mathbf r,t) - \fracp{\mathbf D}t(\mathbf r,t) = \mathbf J_{lib}(\mathbf r,t)$
+\end{tabular}
+
+\subsubsection{Nel vuoto}
+\begin{tabular}{c|llll}
+	& Simbolica & Integrale & Locale & \\
+\hline
+	I & $\Phi(\mathbf E) = Q_{int}/\epsilon_0$ & $\int \mathbf E(\mathbf r,t) \cdot \mathbf n \de\varsigma = \frac 1{\epsilon_0} \int \rho(\mathbf r,t)\,\de\upsilon$ & $\dive \mathbf E(\mathbf r,t) = \rho(\mathbf r,t)/\epsilon_0$\\
+	
+	II & $\Phi(\mathbf B) = 0$ & $\int \mathbf B(\mathbf r,t) \cdot \mathbf n\de\varsigma = 0$ & $\dive \mathbf B(\mathbf r,t) = 0$\\
+	
+	III & $\Gamma(\mathbf E) = -\fracd{\Phi(\mathbf B)}t$ & $\oint \mathbf E(\mathbf r,t) \cdot \de\mathbf s = -\int \fracp{\mathbf B}t(\mathbf r,t) \cdot \mathbf n \de\varsigma$ & $\rot \mathbf E(\mathbf r,t) +\fracp{\mathbf B}t(\mathbf r,t) = 0$\\
+	
+	IV & $\Gamma(\mathbf B) = \mu_0 \Phi(\mathbf J_{lib} + \epsilon_0 \mathbf J_d)$ & $\oint \mathbf B(\mathbf r,t) \cdot \de\mathbf s = \int [\mu_0 \mathbf J_{lib}(\mathbf r,t) + \frac1c \fracp{\mathbf E}t(\mathbf r,t)] \cdot \mathbf n \de\varsigma$ & $\rot \mathbf B(\mathbf r,t) - \frac1c \fracp{\mathbf E}t(\mathbf r,t) = \mu_0 \mathbf J_{lib}(\mathbf r,t)$ &  
+\end{tabular}
+
+\subsubsection{In assenza di sorgenti}
+Nella materia $\begin{cases}
+		\dive \mathbf D(\mathbf r,t) = 0\\
+		\dive \mathbf B(\mathbf r,t) = 0\\
+		\rot \mathbf E(\mathbf r,t) = -\fracp{\mathbf B}t (\mathbf r,t) = 0\\
+		\rot \mathbf H(\mathbf r,t) - \fracp{\mathbf D}t (\mathbf r,t) = 0
+	\end{cases}$
+\qquad\qquad
+Nel vuoto $\begin{cases}
+	\dive \mathbf E(\mathbf r,t) = 0\\
+	\dive \mathbf B(\mathbf r,t) = 0\\
+	\rot \mathbf E(\mathbf r,t) = -  \fracp{\mathbf B}t (\mathbf r,t)\\
+	\rot \mathbf B(\mathbf r,t) = \frac1c \fracp{\mathbf E}t (\mathbf r,t)
+\end{cases}$
+	
+	\section{Elettrodinamica classica}
+\subsubsection{Potenziali elettromagnetici}
+Le equazioni di Maxwell sono un sistema di equazioni differenziali del primo ordine accoppiate. L'obiettivo è avere meno equazioni del secondo ordine e possibilmente disaccoppiate. Dalla II equazione ho $\mathbf A$ il potenziale vettoriale $\mathbf B = \rot\mathbf A$ che sostituisco nella III equazione per avere $\Phi$ il potenziale scalare $\rot(\mathbf E + \fracp{\mathbf A}t) = 0 \;\Rightarrow\; \mathbf E + \fracp{\mathbf A}{t} = -\nabla\Phi \;\Rightarrow\; \mathbf E = -\nabla\Phi - \fracp{\mathbf A}t$. In altre parole $\mathbf A$ e $\Phi$ definiscono il campo elettromagnetico.
+
+\subsubsection{Trasformazioni di gauge}
+Si verifica facilmente che, se $\mathbf A$ e $\Phi$ sono i potenziali come definiti sopra, allora $\forall \psi$ anche $\mathbf A_\psi = \mathbf A + \nabla\psi$ e $\Phi_\psi= \Phi - \fracp{\psi}t$ definiscono lo stesso campo elettromagnetico, cioè $\mathbf B(\mathbf A_\psi) = \mathbf B(\mathbf A)$ e $\mathbf E(\Phi_\psi\mathbf A_\psi) = \mathbf E(\Phi,\mathbf A)$. La scelta di $\psi$ è del tutto arbitraria, posso sfruttarla a mio vantaggio
+
+\subsubsection{Equazioni dei potenziali}
+Utilizzando i potenziali di gauge, dalla I e IV equazione ricavo (ricordando che $\nabla(\nabla^2 f)=\nabla^2(\nabla f))$\\ 
+$\begin{cases}
+	\nabla^2 \Phi + \fracp{}{t}\dive\mathbf A = -\rho/\epsilon_0\\
+	\nabla^2\mathbf A - \nabla(\dive\mathbf A + \frac1{c^2} \fracp{\Phi}t) - \frac1{c^2} \fracpq{\mathbf A}t = -\mu_0 \mathbf J
+\end{cases}$\\
+Nonostante ho utilizzato i potenziali di gauge non compaiono termini con $\psi$, cioè le equazioni di Maxwell sono invarianti rispetto alle TG. Posso scegliere arbitrariamente $\psi$ al fine di semplificare queste equazioni.
+
+\subsubsection{Gauge di Lorentz}
+Se impongo la condizione (di Lorentz) $\dive\mathbf A + \frac1{c^2} \fracp\Phi t = 0$ le equazioni dei potenziali diventano equazioni delle onde\\
+$\begin{cases}
+	\nabla^2 \Phi - \frac1c \fracpq\Phi t = -\rho/\epsilon_0\\
+	\nabla^2 \mathbf A - \frac1c \fracpq{\mathbf A}t = -\mu_0 \mathbf J
+\end{cases}$\\
+che hanno soluzioni $\mathbf A$ e $\Phi$ note. La $\psi$\ associata si trova applicando la TG alla CL (cioè sostituisco $\mathbf A \to \mathbf A_\psi$ e $\Phi \to \Phi_\psi$) e trovo $\dive\mathbf  A + \frac1{c^2} \fracp\Phi t + \nabla^2\psi + \frac1{c^2} \fracpq{\psi}t = 0$. Se riesco a trovare una tale $\psi$ allora la CL è soddisfatta e $\mathbf A_\psi$ e $\Phi_\psi$ sono soluzioni equivalenti.
+
+\subsubsection{Gauge di Coulomb}
+Un altra scelta è $\dive\mathbf A = 0$ e le equazioni dei potenziali diventano\\
+$\begin{cases}
+	\nabla^2 \Phi = -\rho/\epsilon_0\\
+	\nabla^2 \mathbf A - \frac1{c^2} \fracpq{\mathbf A}t = -\mu_0 \mathbf J + \frac1{c^2} \nabla \fracp{\Phi} t
+\end{cases}$\\
+La prima ha soluzione nota $\Phi = \frac1{4\pi\epsilon_0} \int \frac\rho{|\mathbf x - \mathbf x^\prime|} \de\upsilon^\prime$. In assenza di sorgenti le precedenti sono facilmente risolvibili. [NEL JACKSON C'È APPROFONDIMENTO SU CORRENTE LONG E TRASV]
+
+	\section{Onde elettromagnetiche}
+\subsubsection{Notazione complessa}
+La parte reale di $h(\mathbf r,t) = h_0 e^{i(\mathbf k \cdot \mathbf r -\omega t)}$ è la funzione d'onda di un'onda piana armonica. Si trova $\fracp{h}{x_j} = i k_j h$ e $\fracp{h}{t} = -i \omega h$
+
+\subsubsection{Equazione di D'Alambert per la corda vibrante}
+Scrivo l'equazione del moto di un tratto $\de l$ di corda ideale (omogenea, flessibile, inestensibile, \ldots) in direzione della sua oscillazione. Se chiamo $\xi$ lo spostamento del tratto infinitesimo allora $[0,L] \times [0,T] \ni (x,t)  \mapsto \xi(x,t)$ individua il moto della corda. Ad ogni istante, la forza lungo $y$ è $F_y = T(\sin\alpha_2 - \sin\alpha_1) \approx T[(\xi_x(x_2) - \xi_x(x_1)] \approx T \xi_{xx}(\frac{x_1+x_2}2) \de x \approx T \xi_{xx} (\frac{x_1+x_2}2) \de l$. Quindi l'equazione del moto è $\rho \de l \xi_{tt} = T \xi_{xx} \de l$. Si definisce la velocità di fase $v = \sqrt{T/\rho}$ quindi $\xi_{xx} = \frac1{v^2} \xi_{tt}$. Si può dimostrare che la soluzione più generale(funzione d'onda) è $\xi(x,t) = f(x-vt) + g(x+vt)$, in cui $f$ e $g$ possono avere forma arbitraria ma devono dipendere dalla variabile $u=x\mp vt$.
+
+\subsubsection{Caratterizzazione onda piana armonica}
+La funzione d'onda dell'onda piana armonica è $\xi(x,t) = \xi_0 \sin(k(x \mp vt))$. La costante $k$ adimensionalizza l'argomento e si chiama numero d'onda. Si riscrivere $k(x \mp vt) = kx \mp \omega t$ dove $\omega = k v$ è la pulsazione. È utile introdurre le periodicità spaziale (lunghezza d'onda) e temporale (periodo). A tempo fissato, $\xi(x,\bar t)$ individua una sinusoide il cui periodo spaziale si trova da $k(x_2-v\bar t) - k(x_1-v\bar t) = 2\pi \Rightarrow x_2 - x_1 = 2\pi/k$. La lunghezza d'onda è $\lambda = x_2 - x_1 = 2\pi/k$. Il numero d'onda è il numero di lunghezza d'onda su una distanza di $2\pi$ metri. A posizione fissata, $\xi(\bar x,t)$ è ancora una sinusoide il cui periodo temporale è $T = 2\pi/\omega$. Le grandezze introdotte sono correlate dalla relazione $v = \lambda/T = \lambda \nu$, posta la frequenza $\nu= 1/T$.
+
+\subsubsection{L'onda piana è indipendente dal sistema di coordinate}
+È stato scelto un sistema di assi cartesiani con $x \parallel$ alla propagazione. Tuttavia l'onda è un fenomeno che non dipende dal sistema di riferimento scelto. Se $\mathbf r$ è un punto dello spazio, esso si troverà su un certo fronte d'onda (piano $\perp$ alla direzione di propagazione e in cui la fase $kx-\omega t$ è costante). È comodo introdurre il vettore d'onda $\mathbf k = (2\pi/\lambda) \mathbf u$ in modo che $\xi(\mathbf r,t) = \xi_0 \sin(\mathbf k \cdot \mathbf r - \omega t)$.
+
+\subsubsection{Polarizzazione}
+Per le onde piane armoniche fa comodo rappresentare la funzione d'onda $\xi(x,t)$ come un vettore $\bm \xi = (0, \xi_y(x,t), \xi_z(x,t))$, con $\xi_\alpha$ funzioni armoniche differenti alpiù nella fase ($x-vt+\delta$). La dipendenza della direzione di $\bm \xi$ rispetto all'asse $x$ individua il tipo di polarizzazione. Per dipendenza casuale l'onda è non polarizzata. Se la direzione è fissa l'onda è polarizzata linearmente ($\delta = 0,\pi$), e si identificano la direzione di polarizzazione ed il piano di polarizzazione. Per $\delta =\pi/2,3\pi/2$ vale in ogni istante $\xi_y^2/\xi_{y_0}^2 + \xi_z^2/\xi_{z_0}^2 = 1$ cioè $\bm \xi$ descrive un'ellisse e l'onda è polarizzata ellitticamente. Se $\xi_{0y} = \xi_{0z}$ allora è polarizzata circolarmente. Per $\delta$ arbitrario ma costante la polarizzazione è ellittica ma con assi non paralleli al riferimento.
+
+\subsection{Proprietà delle onde elettromagnetiche}
+\subsubsection{Equazioni delle onde em - onde piane}
+Si cercano soluzioni delle EdM in assenza di sorgenti, in un mezzo indefinito e omogeneo di costanti $\epsilon$ e $\mu$. In questa situazione le EdM sono $\dive\mathbf E = 0 \quad \dive\mathbf B = 0 \quad \rot\mathbf E = -\partial_t \mathbf B \quad \rot\mathbf B = \epsilon\mu \, \partial_t \mathbf E$. Le soluzioni più semplici sono della forma $\mathbf E = \mathbf E(x,t)$ e $\mathbf B = \mathbf B(x,t)$ cioè che assumono valori costanti in piani $\perp$ all'asse $x$. Con queste ipotesi le EdM si semplificano ($\alpha = y,z$):\\
+$\begin{cases} I \Rightarrow E_x = 0\\
+II \Rightarrow B_x = 0\\
+III \Rightarrow \square E_\alpha = 0\\
+IV \Rightarrow \square B_\alpha = 0 \end{cases}$\\
+Il campo elettromagnetico si propaga lungo l'asse $x$ sotto forma di onde piane trasversali con velocità $v = 1/\sqrt{\epsilon\mu}$; si può dimostrare che $v < c$ in ogni caso. Le precedenti si possono risolvere e individuano $\mathbf E = E_y(u) \mathbf u_y + E_z(u) \mathbf u_z$ e $\mathbf B = B_y(u) \mathbf u_y + B_z(u) \mathbf u_z$, dove $u = x-vt$. Le soluzioni sono del tipo $\mathbf E = \mathbf E_0 e^{i(\mathbf k \cdot \mathbf r - \omega t)}$.
+
+\subsubsection{Onde tridimensionali}
+Le EdM ammettono, oltre alle onde piane, anche soluzioni che rappresentano onde sferiche $\mathbf E \sim \frac1r e^{i(kr -\omega t)}$ e cilindriche $\mathbf E \sim \frac1{\sqrt{r}} e^{i(kr -\omega t)}$. A grande distanza dalla sorgente i fronti d'onda appaiono comunque piani, con ampiezza circa costante su distanze non grandi.
+
+\subsubsection{Le onde em sono trasversali}
+Per Maxwell vale $\dive\mathbf E= 0$ e scrivendo $\mathbf E = \mathbf E_0 e^{i(\mathbf k \cdot \mathbf r - \omega t)}$ si trova $\mathbf E_0 \perp \mathbf k$. Stessa cosa per $\mathbf B$.
+
+\subsubsection{Relazioni fra i campi nell'onda piana}
+Nei passaggi intermedi per ottenere le precedenti si trovano equazioni che legano fra loro le derivate di $\mathbf E$ e $\mathbf B$, fra cui (con il cambio di variabile) $\partial_t B_y = \partial_x E_z = \partial_u E_z \partial_x u$ e $\partial_t B_z = -\partial_x E_y$. Dalla loro integrazione seguono delle relazioni che permettono di scrivere $v \mathbf B = -E_z(u) \mathbf u_y + E_y(u) \mathbf u_z$ (e analogamente per $\mathbf E$). In ogni caso si trova $\mathbf E \cdot \mathbf B = 0$ (sono ortogonali) e $\mathbf E \times \mathbf B = \frac1v (E_y^2 + E_z^2) \mathbf u_x = E^2/v \mathbf u_x$ (entrambi ortogonali alla direzione di propagazione). Anche i moduli sono in relazione, infatti si trova $E^2 = v^2 B^2$ da cui $E/B = v$.
+
+\subsubsection{Teorema di Kirchhoff}
+La perturbazione $\xi(P, t)$ di una distribuzione incognita di sorgenti in un punto $P$ è nota se, presa una superficie $\Sigma$ che racchiude le sorgenti, si conoscono $\xi(\Sigma,t)$ e $\fracp{\xi}{n}(\Sigma,t)$. Inoltre vale $\xi(r,t) = \frac{\xi_0}{2\lambda} \oint_\Sigma \frac1{qs} (\cos\theta_0 + \cos\theta) \cos(k(q+s) - \omega t - \frac\pi 2) \de\varsigma$. La formula è particolarmente significativa considerando una sorgente sferica e una $\Sigma$ sferica coincidente con i fronti d'onda, infatti $q$ è il raggio di $\Sigma$ e $\cos\theta_0 = 1$. Posto $f(\theta) = \frac{1+\cos\theta}2$ e $A$ di conseguenza, si trova $\xi(r,t) = \oint \frac{A}s f(\theta) \cos(k(q+s) - \omega t - \frac\pi 2) \de\varsigma = \oint \de\xi$. Nell'integrando si riconosce la forma tipica di un'onda sferica (infinitesima). Il fattore di obliquità $f(\theta)$ è massimo per $\theta=0$ e nullo per $\theta=\pi$, quindi si può pensare $\Sigma$ come sorgente secondaria di onde $\de\xi$, con ampiezza dipendente da $\theta$ oltre che dall'area di $\de\Sigma$.
+
+\subsection{Propagazione delle onde elettromagnetiche}
+\subsubsection{Velocità di fase e di gruppo}
+A seconda del mezzo di propagazione la velocità dell'onda potrebbe non essere costante ma dipendere dalla pulsazione dell'onda stessa. Nella definizione delle onde armoniche si è introdotta la fase dell'onda $kx - \omega t$, dove nella pulsazione $\omega = k v$ si suppone tutto costante nei mezzi detti non dispersivi (onde in un gas, onde in una sbarra solida, in una corda tesa, in una membrana, onde em nel vuoto). Solitamente un'onda è definita da $\omega$ e $\textbf{k} = k \textbf{u}$, quindi è nota la velocità (di fase) $v = \omega/k$. Talvolta (onde em nella materia, onde su superfici di fluidi) per la velocità di propagazione è possibile una relazione di dispersione $v = v(\omega)$ caratteristica del mezzo di propagazione, cioè le onde si propagano con velocità dipendente dalla frequenza.\\
+Nella propagazione di un pacchetto d'onda partecipano componenti con diversa pulsazione quindi diversa velocità di fase. Nel caso più semplice il pacchetto è $\xi(x,t) = A \sin(k_1 x - \omega_1 t) + A \sin(k_2 - \omega_2 t) = 2A \cos(\frac{k_1-k_2}2 x - \frac{\omega_1-\omega_2}2 t) \sin(\frac{k_1+k_2}2 x - \frac{\omega_1+\omega_2}2 t)$. La velocità (media) di fase è $v = \frac{\omega_1 + \omega_2}{k_1 + k_2}$. L'ampiezza del pacchetto non è costante ma ondulatoria con velocità di gruppo $v_g = \frac{\omega_1 - \omega_2}{k_1 - k_2}$. Ricordando $\omega(k) = k\, v(k)$, si può caratterizzare la velocità di gruppo tramite $v_g = \fracd{\omega}k = v + k \fracd{v}k$; il limite di mezzo non dispersivo è $\fracd{v}k = 0$.
+
+\subsubsection{Indice di rifrazione e impedenza del vuoto}
+Nella propagazione delle onde è importante tenere presente la natura del mezzo in cui si propagano, con particolare riferimento a velocità di propagazione e all'isotropia del mezzo. Nel vuoto le costanti sono $\epsilon_0$ e $\mu_0$ e la velocità di propagazione si definisce con $1/c^2 = \epsilon_0 \mu_0$. Nella materia le costanti sono $\epsilon$ e $\mu$ e la velocità è $1/v^2 = \epsilon \mu$. È comodo definire l'indice di rifrazione di un certo mezzo $n = c/v = \sqrt{\frac{\epsilon \mu}{\epsilon_0 \mu_0}}$. Per l'isotropia, nei mezzi in cui $\mathbf B = \mu\mathbf H$ si può definire l'impedenza caratteristica, tramite la relazione $E/B = v$ che può riscriversi $E/H = \mu \frac1{\sqrt{\epsilon\mu}} = \sqrt \frac\mu\epsilon = Z$; per il vuoto è $Z_0 = \frac{\mu_0}{\epsilon_0} \approx 377 \;\Omega$.
+
+\subsubsection{Mezzo materiale visto come vuoto}
+Per poter trattare un mezzo omogeneo come il vuoto, oltre alle sostituzioni $\epsilon_0 \to \epsilon$ e $\mu_0 \to \mu$, bisogna anche verificare che la risposta del mezzo $\mathbf P = \mathbf P(\mathbf E)$ consenta una soluzione ondulatoria analoga al caso nel vuoto, cioè in assenza di dispersione. Qui entra in gioco la pulsazione dell'onda elettromagnetica che interagisce con la materia.
+
+\subsubsection{Conservazione energia e teorema di Poynting}
+\subparagraph{bilancio energetico} In diversi modi si può stabilire la legge di conservazione dell'energia. La più intuitiva è indovinare l'equazione di bilancio (diminuzione energia del campo) = (flusso uscente) + (lavoro ceduto alle cariche) cioè $-\fracd{U_{em}}t = \int \mathbf S \cdot \mathbf n\de\varsigma + \int \mathbf E \cdot \mathbf J \de\upsilon$. In forma locale è $\fracp{u_{em}}t + \dive\mathbf S + \mathbf E \cdot \mathbf J$. Con la III e IV EdM e l'identità vettoriale DPV, si riscrive $\mathbf E \cdot \mathbf J = -\dive(\mathbf E\times\mathbf H) - \mathbf E \cdot \partial_t\mathbf D - \mathbf B \cdot \partial_t \mathbf H$. Sostituendo nella precedente si trova il vettore di Poynting $\mathbf S = \mathbf E \times \mathbf H$ e la densità di energia $u_{em} = \frac12(\mathbf E \cdot \mathbf D + \mathbf B \cdot \mathbf H) = \frac12 (\epsilon_0 E^2 + B^2/\mu_0)$.
+\subparagraph{metodo del cilindretto} Con la relazione $E^2 = B^2/\mu_0$ si trova $u_{em} = 2 u_E = \epsilon_0 E^2$. [il Mazzoldi dice che è vero anche per onde non piane]. L'energia contenuta nel volume cilindrico $\de\upsilon = \mathbf v \de t \cdot \mathbf n \de\varsigma$ è $\de U_{em} = u_{em} \de\upsilon$. La potenza attraverso $\de\varsigma$ è quindi $\de P = \epsilon_0 E^2 v \cos\alpha \de\varsigma$. Il vettore di Poynting è $\mathbf S = \epsilon_0 E^2 \mathbf v$ tale che $\de P = S \cdot \mathbf n \de\varsigma$. Con poca manipolazione si può riscrivere $\mathbf S = \mathbf E \times \mathbf H$.
+
+\subsubsection{Conservazione quantità di moto e tensore degli sforzi}
+L'equazione della dinamica delle particelle in un volume è $\de_t \mathbf P = \int (\rho \mathbf E + \mathbf J \times \mathbf B) \de\upsilon$. Con le EdM e qualche identità [vedi Jackson] si riscrive $\de_t \mathbf P + \de_t \mathbf P_{em} = \int (\epsilon_0\mathbf E \dive\mathbf E - \epsilon_0\mathbf E \times \rot\mathbf E + \frac1{\mu_0}\mathbf B \dive\mathbf B - \frac1{\mu_0} \mathbf B \times \rot B)\de\upsilon$. Esplicitando il rhs in componenti ($[\mathbf A \dive\mathbf A - \mathbf A \times \rot\mathbf A]_h = \partial_\alpha(A_h A_\alpha - \frac12 \mathbf A\cdot\mathbf A \delta_{\alpha h})$) si arriva a definire il tensore degli sforzi di Maxwell $T_{ij} = \epsilon_0 E_i E_j + \frac1{\mu_0} B_i B_j - \frac12(\epsilon_0 \mathbf E \cdot E + \frac1{\mu_0} \mathbf B \cdot \mathbf B)\delta{ij}$. Con esso la legge di conservazione si scrive $\dot{\mathbf P} + \dot{\mathbf P}_{em} = \int \mathbf T \cdot \mathbf n \de\varsigma$
+
+\subsubsection{Intensità dell'onda em}
+Riguardando la definizione di $\mathbf S$ e di intensità di un'onda, ci si accorge che $\langle |\mathbf S| \rangle = I$. Dato che per $T \to +\infty$ è $\langle \sin^2 \rangle \sim \frac T2$ il calcolo porta $I = \frac12 \epsilon_0 v E_0^2$. Si può dimostrare (vd. Mazzoldi) che l'intensità è indipendente dalla polarizzazione dell'onda.
+
+\subsubsection{Sorgenti delle onde em}
+\subparagraph{dipolo elettrico oscillante} carica dipolare che varia sinusoidalmente $q(t) = q_0 \sin \omega t$, distanza $delta$ fissata, $\mathbf p$ varia sinusoidalmente $p(t) = \delta q(t)$. So descrivere il campo del dipolo nello spazio "vicino" al dipolo (in zone con $r \gg \delta$ ma $r \ll \lambda$), da lontano $r \gg \lambda$ vedo un'onda sferica con $\mathbf E = E_\theta \sim \frac{\omega^2 \sin\theta}r$ e $\mathbf B = B_\phi = E_\theta /c$. Per l'intensità si trova $I \sim \frac{\omega^4 \sin^2 \theta}{r^2}$, per la potenza $P_{el} = \int I \de\varsigma = \frac{8\pi}3 \frac{p_0^2 \omega^4}{32\pi^2 \epsilon_0 c^3} = P_{Larmor}$
+\subparagraph{dipolo magnetico oscillante} corrente circolare $i(t) = i_0 \sin\omega t$ e momento $m(t) = \pi r^2 i(t)$. Da lontano vedo una situazione simile al dipolo elettrico ma ruotata, cioè $\mathbf E = E_\phi \sim \frac{\omega^2 \sin\theta}r$ e $\mathbf B = B_\theta = E_\phi /c$. Per l'intensità $I \sim \frac{\omega^4 \sin^2 \theta}{r^2}$, per la potenza $P_{mag} \sim \omega^4$
+\subparagraph{carica in moto accelerato} carica $-q$ fissa e carica $+q$ oscillante su un segmento ($z(t) = z_0 \sin \omega t$). La potenza irradiata è $P_{Larmor} = \frac{q^2 \ddot z^2}{6\pi \epsilon_0 c^3}$
+\subparagraph{altre sorgenti} radiazione atomica, fenomeni nucleari, interazioni subatomiche
+
+\subsubsection{Spettro elettromagnetico}
+\begin{tabular}{llll}
+	Denominazione & $\lambda$ & $\nu$ & $U$\\
+	onde hertziane & $0.3 \sim 3\E6$ & $10^2 \sim 10^9$ & $0 \sim 4\E{-6}$\\
+	microonde & $10^{-3} \sim 0.3$ & $10^9 \sim 10^{11}$ & $4\E{-6} \sim 1.2\E{-3}$\\
+	infrarosso & $0.78\E{-6} \sim 10^{-3}$ & $10^{11} \sim 3.8\E{14}$ & $1.2\E{-3} \sim 1.5$\\
+	luce & $0.38\E{-6} \sim 0.78\E{-6}$ & $3.8\E{14} \sim 7.9\E{14}$ & $1.6 \sim 3.3$\\
+	ultravioletto & $6\E{-10} \sim 0.38\E{-6}$ & $7.9\E{14} \sim 5\E{17}$ & $3.3 \sim 2\E{10}$\\
+	raggi X & $6\E{-12} \sim 6\E{-10}$ & $6\E{-17} \sim 5\E{19}$ & $2\E{3} \sim 2\E{5}]$\\
+	raggi $\gamma$ & $\leq 10^{-12}$ & $\geq 3\E{18}$ & $\geq 1.2\E{4}$
+\end{tabular}
+
+\subsection{Interazioni fra radiazione e materia}
+\subsubsection{Moto particella carica in campo elettromagnetico}
+\subparagraph{Elettrostatico} L'equazione del moto è $q \mathbf E(\mathbf r) = m \ddot{\mathbf r}$. Se $\mathbf E$ è uniforme ($\mathbf E \parallel \mathbf x$) allora $\ddot x = \frac{qE}m$, cioè l'accelerazione è costante.
+\subparagraph{Magnetostatico}
+L'equazione del moto è $q (\mathbf v_\parallel + \mathbf v_\perp) \times \mathbf B = m(\dot{\mathbf v}_\parallel + \dot{\mathbf v}_\perp)$. Poiché $\mathbf v_\parallel \times \mathbf B = 0$ si riduce alle equazioni $v_\parallel = cost$ e $q v_\perp B = m \dot v_\perp$. Il moto è elicoidale uniforme.
+
+\subsubsection{Eccitazione dell'atomo di H}
+\subparagraph{Eccitazione costante - polarizzazione elettronica} vd. meccanismo di polarizzazione elettronica, si raggiunge un equilibrio, per il nucleo $Z e \mathbf E_-(z) + Z e \mathbf E_{loc} = 0$ da cui la posizione di equilibrio
+\subparagraph{Eccitazione impulsiva - decadimento per irraggiamento} L'atomo assorbe l'impulso elettromagnetico acquisendo l'energia $U_0$, non si ha equilibrio ma solo moto della nube elettronica che causa irraggiamento e perdita dell'energia acquisita. Il moto dell'elettrone è governato da $m_e \ddot z = -e E_-(z)$, con soluzione armonica (calcolare soluzione) di pulsazione $\omega = $. Posso usare il modello di dipolo oscillante tenendo conto della perdita di energia per irraggiamento (vd. Mazzoldi). Si trova $U(t) = U_0 e^{-t/\tau}$. L'emissione avviene emettendo un pacchetto di onde.
+\subparagraph{Eccitazione sinusoidale - diffusione luce} Il campo esterno $\mathbf E(t) = \mathbf E_0 \e{i\omega t)}$ agisce sull'atomo il quale acquista il momento di dipolo $\mathbf p(t) = \epsilon_0 \alpha \mathbf E_0 $. Posso applicare il modello di dipolo elettrico oscillante e trovare $P =?$ dipendenza da theta. Se il campo non è polarizzato allora $\mathbf p$ ha direzione casuale, l'onda diffusa è sferica con intensità uniforme.
+
+\subsubsection{Onde nei dielettrici - polarizzabilità complessa e dispersione}
+Generalizza i casi precedenti considerando un atomo con pulsazione propria $\omega_0$, riferita ad una forza di richiamo elastica. Il campo esterno è sinusoidale $E(t;\omega) = E_0 e^{-i\omega t}$. Includo anche un termine viscoso. L'equazione del moto è $m \ddot z = -e E_0 e^{-i\omega t} - m \beta \dot z - m \omega_0^2 z$. La soluzione è $z(t; \omega, \omega_0) = \frac{e E_0 e^{-i\omega t}}{m(\omega_0^2 - \omega^2 - i\beta\omega)}$ con stessa pulsazione di $\mathbf E$. La presenza del termine viscoso comporta una soluzione complessa, quindi una differenza di fase rispetto alla forzante esterna. La conseguenza è che $\mathbf p = -e z(t)$ è complesso e, dato che $\mathbf p = \alpha \epsilon_0 \mathbf E$, lo è anche $\alpha =\alpha(\omega)$. La dipendenza da $\omega$ 
+
+\subsubsection{Onde nei conduttori}
+
+\subsubsection{Riflessione e rifrazione}
+Guardo cosa succede all'interfaccia $\sigma$ fra due mezzi di propagazione con $n$ diverso. Le onde incidente, riflessa e rifratta sono monocromatiche con vettori $\mathbf k_i$, $\mathbf k_s$, e $\mathbf k_t$ che formano gli angoli $\theta_i$, $\theta_s$ e $\theta_t$ con $\mathbf n$ dell'interfaccia. Il piano di incidenza $\pi$ è quello formato da $\mathbf k_i$ e $\mathbf n$. Le fasi all'interfaccia devono raccordarsi quindi vale $\mathbf k_i \cdot \mathbf r = \mathbf k_s \cdot \mathbf r = \mathbf k_t \cdot \mathbf r$. Se prendo un ovvio riferimento rispetto a $\sigma$ e $\pi$ e faccio i conti in componenti trovo le 3 leggi: $k_{\alpha x} = 0$ quindi i $\mathbf k_\alpha$ giacciono tutti su $\pi$; i $k_{\alpha y}$ sono tutti uguali quindi ($k = \omega/v$) trovo $\theta_s = \theta_i$; sempre dalla precedente trovo anche (legge di Snell) $\frac{\sin\theta_i}{\sin\theta_t} = \frac{v_1}{v_2} = \frac{n_2}{n_1}$ e ho aumento o diminuzione dell'angolo in base a $n_2 \lessgtr n_1$.\\
+Per le intensità si usano le condizioni di raccordo all'interfaccia considerando che i campi elettrici nei due mezzi sono $\mathbf E_1 = \mathbf E_i + \mathbf E_s$ e $\mathbf E_2 = \mathbf E_t$ ma bisogna distinguere i due casi di polarizzazione in cui $\mathbf E_i \parallel \pi$ oppure $\mathbf E_i \perp \pi$.
+
+\subsubsection{Riflessione totale e dispersione}
+Nel caso $n_2 > n_1$ si ha $\theta_t > \theta_i$ e fra i due cresce più velocemente $\theta_t$. Questo cresce fino a raggiungere $\pi/2$ in corrispondenza dell'angolo limite $\theta_i^*$, oltre il quale non si ha rifrazione ma riflessione totale.\\
+Se l'onda incidente non è monocromatica e i mezzi sono dispersivi ($v = v(\omega)$) allora il rapporto $\frac{\sin\theta_i}{\sin\theta_t}$ varia con $\omega$. Dato che $\theta_i$ è fissato si hanno diversi $\theta_s$ per ogni lunghezza d'onda, in particolare $n$ decresce con $\omega$ da cui l'andamento di $\theta_s$. Per frequenza visibili l'effetto è la separazione dei colori.
+
+\subsubsection{Interferenza}
+
+\subsubsection{Diffrazione}
+
+	\section{Teoria dei circuiti}
+\subsubsection{Direzioni di riferimento associate}
+Dato un componenti a due terminali si scelgono arbitrariamente i versi positivi per tensione e corrente. Se la direzione della corrente è concorde a quella della tensione (entra nel morsetto positivo) allora le direzioni sono associate. Il prodotto $Vi$ è la potenza sul componente.
+
+\subsubsection{Equazioni di Kirchhoff}
+Per un nodo vale $\sum_k i_k(t) = 0$. Per una maglia orientata vale $\sum_k V_k(t) = 0$
+
+\subsubsection{Equazioni costitutive}
+Nell'ipotesi di componenti lineari tempo-invarianti, le equazioni delle caratteristiche $f(v,i)=0$ sono le seguenti\\
+$V_R(t) = Ri(t) = R\dot q(t)$\\
+$V_L(t) = L\dot i(t) = L\ddot q(t)$.\\
+$\dot V_C(t) = i_C(t)/C = q(t)/C$\\
+La scelta giusta delle variabili da usare può semplificare scrittura e risoluzione delle equazioni di Kirchhoff.
+
+\subsection{Circuiti notevoli}
+Scrivendo le EdK si può arrivare, con le equazioni costitutive, ad una equazione differenziale che descrive la dinamica di una (grandezza) variabile. In maniera più generale, si possono ricavare $n$ equazioni di stato per le $n$ variabili di stato scelte.
+
+\subsubsection{I ordine}
+L'equazione di stato è della forma $\dot u + \frac1\tau u = \mathcal F/\tau$. La forma di $\mathcal F(t)$ identifica i casi di evoluzione libera ($\mathcal F(t) = 0$), sorgente DC ($\mathcal F(t) = \bar {\mathcal F}$), regime AC ($\mathcal F(t) = \mathcal F_0 \sin\omega t$) o regime variabile ($\mathcal F(t)$ arbitraria). La dualità è $(V_C, RC, \mathcal E) \leftrightarrow (i_L, L/R, \mathcal I)$ e si evidenzia anche nell'applicazione del teorema di Thevenin-Norton.\\
+\subparagraph{Evoluzione libera}\mbox{}\\
+RC) $V_R = V_C \quad;\quad i_R + i_C = 0 \quad\Rightarrow\quad RC\,\dot V_C + V_C = 0$\\
+RL) $i_R = i_L \quad;\quad V_R + V_L = 0 \quad\Rightarrow\quad L\,\dot i_L + R\,i_L = 0$
+\subparagraph{Sorgente costante}\mbox{}\\
+RC serie) $V_R + V_C = \mathcal E \quad;\quad i_R = i_C \quad\Rightarrow\quad RC\,\dot V_C + V_C = \bar{\mathcal E}$\\
+RL parallelo) $i_R + i_L = \mathcal I \quad;\quad V_R = V_L \quad\Rightarrow\quad L\,\dot i_L + R\,i_L = R\,\bar{\mathcal I}$
+\subparagraph{Sorgente sinusoidale}\mbox{}\\
+
+\subsubsection{II ordine - RLC serie e parallelo}
+Circuiti governati dall'equazione $\ddot u + \frac1{\tau_1} \dot u + \frac1{\tau_2} u = \mathcal F/\tau_2$ con soluzione $\ldots$. La dualità è $\ldots(V_C, RC, \mathcal E) \leftrightarrow (i_L, L/R, \mathcal I)$
+parallelo) $i_R + i_L + i_C = \mathcal I \quad;\quad V_R = V_L = V_C \quad\Rightarrow\quad LC\,\ddot i_L + \frac LR \dot i_L + i_L = \mathcal I$\\
+serie) $V_R + V_L + V_C = \mathcal E \quad;\quad i_R = i_L = i_C \quad\Rightarrow\quad LC\,\ddot V_C + RC\, \dot V_C + V_C = \mathcal E$
+
+\end{document}
