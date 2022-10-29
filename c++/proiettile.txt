@@ -1,4 +1,0 @@
-4) scrivere un programma che legge da tastiera l'angolo rispetto al suolo e 
-la velocità iniziale di un proiettile che viene sparato in aria,
-calcola la distanza in cui ricade a terra (gittata) 
-e il tempo che impiega, e scrive i risultati sullo schermo.
