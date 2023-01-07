@@ -1,0 +1,48 @@
+1) Scrivere un programma che genera a caso N numeri reali compresi tra 0 e 1 usando una distribuzione uniforme, li visualizza e ne calcola la media e la varianza.
+Per generare 1 numero a caso
+Includere <random>
+Definire un generatore con la dichiarazione
+minstd_rand   gen;
+Definire una distribuzione con la dichiarazione
+uniform_real_distribution<double> unif(0,1)
+Il numero si genera con            unif(gen)
+
+2) Scrivere una funzione che calcola il valore di pi greco (approssimato) con il metodo Montecarlo. Il metodo usa un generatore di numeri pseudo-casuali. Quindi includere <random> e dichiarare una variabile globale di tipo minstd_rand (ad esempio con nome gen).
+La funzione ha come parametro il numero n di punti da generare. Quindi genera n punti nel quadrato che come vertici (-1,1), (-1,-1), (1,1), (1,-1): è sufficiente generare la x e la y di ogni punto mediante la distribuzione dis dichiarata come
+uniform_real_distribution<double> dis(-1,1);
+e poi dare
+x=dis(gen);
+y=dis(gen);
+Contare quanti punti hanno distanza dall’origine minore di 1, il rapporto con n è all’incirca pi greco/4.
+
+3) Scrivere un programma che genera n numeri pseudo-casuali con distribuzione con media mu e varianza sigma2
+normal_distribution<double> dis(mu, sigma2);
+e ne calcola media e varianza.
+
+4) Scrivere un programma che calcola una stima della probabilità che lanciando tre dadi si ottenga come somma almeno 15 tramite il metodo Montecarlo: fare n esperimenti, in ogni esperimento lanciare 3 dadi e contare in quanti esperimenti si ha la proprietà voluta.
+
+4) Scrivere un programma che stima la media (tramite il metodo Montecarlo) della variabile che si ottiene lanciando k dadi indipendenti e bilanciati e prendendo il risultato più alto. L’utente può scegliere k e il numero degli esperimenti.
+
+4b) Usando una mappa calcolare la distribuzione di frequenza
+
+5) Scrivere un programma che simula una “passeggiata aleatoria” (random walk) a una o a due dimensioni. C’è un punto che si muove in una retta o in un piano a passi unitari partendo dall’origine. Ad ogni istante di tempo sceglie a caso in che direzione muoversi (due direzioni per la retta e quattro per il piano). Calcolare due quantità:
+a) la distanza dall’origine dopo T unità di tempo
+b) il numero di unità di tempo necessarie a rientrare nell’origine
+
+6) Scrivere una classe che rappresenta un veicolo. La classe ha i campi privati targa, posizione e quantità di carburante. Definire un costruttore che crea un veicolo con una data targa, posizionato nell’origine e con serbatoio vuoto.
+La classe deve i metodi:
+void riempi_serbatoio(k), riempe il serbatoio di k litri di carburante
+void scrivi_dati(), visualizza i dati
+void spostati(x,y,r), sposta il veicolo nella posizione (x,y) consumando k litri di carburante.
+Scrivere un main che crea un oggetto della classe e chiama i metodi (ad esempio tramite un menù).
+
+7) creare un mazzo di carte francesi (13 valori da 1 a 13 e 4 semi) e mischiarle con la funzione shuffle.
+Calcolare la probabilità che si forma un poker (4 carte con lo stesso valore)
+
+8) Scrivere un programma che stima la media (tramite il metodo Montecarlo) della variabile che si ottiene lanciando k dadi indipendenti e bilanciati e prendendo il risultato più alto. L’utente può scegliere k e il numero degli esperimenti.
+
+8b) Usando una mappa calcolare la distribuzione di frequenza
+
+9) Scrivere un programma che simula una “passeggiata aleatoria” (random walk) a una o a due dimensioni. C’è un punto che si muove in una retta o in un piano a passi unitari partendo dall’origine. Ad ogni istante di tempo sceglie a caso in che direzione muoversi (due direzioni per la retta e quattro per il piano). Calcolare due quantità:
+a) la distanza dall’origine dopo T unità di tempo
+b) il numero di unità di tempo necessarie a rientrare nell’origine

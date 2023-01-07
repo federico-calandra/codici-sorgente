@@ -1,0 +1,39 @@
+1) Scrivere una classe che rappresenta un veicolo. La classe ha i campi privati targa, posizione e quantità di carburante. Definire un costruttore che crea un veicolo con una data targa, posizionato nell’origine e con serbatoio vuoto.
+La classe deve i metodi:
+void riempi_serbatoio(k), riempe il serbatoio di k litri di carburante
+void scrivi_dati(), visualizza i dati
+void spostati(x,y,r), sposta il veicolo nella posizione (x,y) consumando k litri di carburante.
+Scrivere un main che crea un oggetto della classe e chiama i metodi (ad esempio tramite un menù).
+
+2) Scrivere una classe che rappresenta un robot. La classe ha almeno  i campi privati posizione_x, posizione_y, theta (angolo che forma il robot rispetto all’asse x), stato del motore (acceso o spento). Il costruttore crea un robot posizionato nell’origine, con il motore spento e con theta=0.
+La classe deve avere i seguenti metodi pubblici
+    • void stato(), visualizza sullo schermo il risultato
+    • void destra(theta1), gira il robot di theta1 gradi verso destra
+    • void sinistra(theta1), gira il robot di theta1 gradi verso sinistra
+    • void avanza(d), avanza il robot di d metri (se il motore è acceso) nella direzione theta
+    • void accendi()
+    • void spegni()
+    • double distanza_percorsa(), restituisce la distanza totale percorsa in metri
+Scrivere il main che crea un oggetto e chiama i vari metodi
+
+2bis) aggiungere alla classe robot uno o più campi in modo tale che il robot memorizzi tutte le posizioni in cui è arrivato e un metodo che le visualizza sullo schermo
+
+3) Scrivere un main che consente di manovrare due o più robot. Aggiungere alla classe un metodo che calcola la distanza del robot da un altro robot (passato al metodo per riferimento).
+
+4) Scrivere una classe studente.
+
+5) Completare la classe Frazione. Deve avere due costruttori, il primo con un due argomenti (che crea una frazione normale) e il secondo con un solo argomento (crea una frazione con denominatore 1).
+Deve avere i metodi somma, sottrai, moltiplica e dividi e un metodo visualizza.
+
+6) Definire una classe Atomo che contiene alcuni dati di un atomo: simbolo dell’elemento chimico, massa atomica, numero atomico. La classe contiene un costruttore, un metodo che visualizza i dati e dei metodi dimmi_simbolo, dimmi_massa, dimmi_numero che restituiscono rispettivamente il simbolo, la massa e il numero atomico.
+Definire una classe Molecola che è vista come sequenza di Atomi. La classe deve avere un costruttore che crea una molecola vuota, un metodo che aggiunge un atomo alla molecola, un metodo che visualizza la formula chimica della molecola e infine un metodo che restituisce la somma delle masse atomiche degli atomi che la compongono.
+
+7) Definire una classe Veicolo che rappresenta un veicolo avente una targa e posizione geografica (latitudine e longitudine), un costruttore che crea un veicolo con una data targa e una data posizione e due metodi: sposta e visualizza.
+Definire una classe Camion che estende Veicolo, aggiungendo un campo contenuto di tipo stringa e un campo carico di tipo double, un metodo carica e un metodo scarica.
+Facoltativo: ridefinire il metodo visualizza
+
+8) Definire una classe generica pezzo che serve a memorizzare la posizione di un pezzo degli scacchi nella scacchiera. Definire due metodi virtuali e astratti:
+bool sposta(x,y) che prova a spostare il pezzo nella posizione (x,y) (immaginando una scacchiera vuota) e restituisce true se il pezzo si può muovere in (x,y), e in tal caso sposta il pezzo, false altrimenti.
+void descriviti(), che scrive sullo schermo la posizione del pezzo
+Definire alcune classi figlie della classe pezzo che implementano alcuni pezzi della scacchiera (torre, alfiere, pedone…).
+Infine scrivere il main che permette di spostare alcuni pezzi.

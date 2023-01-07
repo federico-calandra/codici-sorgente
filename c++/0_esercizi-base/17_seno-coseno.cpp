@@ -7,8 +7,6 @@ using namespace std;
 
 int main()
 {
-	for(int angolo = 0; angolo <= 90; angolo += 5){
-		double rad = 180 * M_PI / angolo;
-		cout << angolo << "    " << sin(rad) << "    " << cos(rad) << endl;
-	}
+	for(float a = 0; a <= M_PI/2; a += M_PI/36)
+		cout << a << "    " << sin(a) << "    " << cos(a) << endl;
 }

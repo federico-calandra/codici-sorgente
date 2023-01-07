@@ -1,0 +1,19 @@
+1) Scrivere un programma che gestisce un elenco di utenti di una rete telefonica. Per ogni utente si deve memorizzare il numero di telefono (che è una stringa) e il numero di secondi trascorsi nelle chiamate inviate. Il programma deve
+a) definire un’opportuna struttura dati per memorizzare i dati
+b) prevedere una funzione che, dato come parametro una stringa num, inserisce un nuovo utente con numero di telefono num e che all’inizio avrà durata delle chiamate fatte pari a 0
+c) prevedere una funzione che scrive sullo schermo tutti i dati
+d) prevedere una funzione che, dati come parametri un numero intero d e una stringa num, aggiorna il dato dell’utente che ha numero num sommando d alla durata delle chiamate fatte.
+Il main va organizzato con un menù che permette ripetutamente di scegliere le 3 funzioni oppure di terminare il programma.
+
+2) Definire una struct per rappresentare i dati di un elemento chimico, con nome, massa atomica (A) e numero atomico (Z).
+Scrivere una funzione che legge da tastiera nome, massa e numero atomico, crea l’elemento con new e restituisce come risultato l’indirizzo.
+Scrivere una funzione che visualizza i dati di un elemento avendo come parametro il puntatore.
+Scrivere il main, che nell’ordine chiama la prima funzione (e quindi si memorizza l’indirizzo dell’elemento), chiama la seconda funzione e infine elimina l’elemento con delete.
+
+2b)  Definire una struct a vostro piacimento, definire una funzione crea, una funzione visualizza, una funzione modifica.
+Scrivere il main che crea un esemplare della struct tramite la funzione crea, lo modifica, lo visualizza e lo distrugge con delete.
+
+2) Scrivere una funzione che ha come parametro un numero naturale n, crea un array dinamico di n numeri interi, legge i suoi valori da tastiera e restituisce come risultato l’indirizzo.
+Scrivere un main che nell’ordine legge un numero naturale n, chiama la funzione con argomento n (e quindi si memorizza l’indirizzo dell’array), visualizza sullo schermo gli elementi dell’array e infine elimina l’array dinamico con delete.
+
+3) Scrivere una funzione che dato come parametro un vector di numeri reali calcola la mediana

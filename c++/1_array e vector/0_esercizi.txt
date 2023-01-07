@@ -1,0 +1,122 @@
+1) Scrivere un programma che legge gli elementi di un array di N numeri reali,
+ne calcola la media quadratica e scrive sullo schermo il risultato
+N è una costante definita con #define
+
+2) Scrivere un programma che legge gli elementi di due array u e v di N numeri reali
+e due numeri reali a e b, calcola la combinazione lineare w=au+bv e scrive
+il risultato w sullo schermo (come vettore colonna).
+
+3) Scrivere un programma che legge gli elementi di due array x e y di N numeri reali
+e calcola i coefficienti della retta di regressione y=b+ax di y rispetto a x
+                        ---      _     _
+                        >    (xi-x)(yi-y)
+      cov(x,y)          ---
+a  --------------- = -----------------------
+       var(x)           ---      _ 2
+	                    >    (xi-x)
+					    ---
+  _		_
+b=y - a x
+
+4) Scrivere un programma che legge i dati di un array di N stringhe, li
+copia in un secondo array in ordine inverso e infine scrive sullo
+schermo il secondo array
+
+5a) Scrivere un programma che legge i dati di un array di N numeri interi
+trova l'indice dell'elemento più piccolo
+
+5b) Scrivere un programma che legge i dati di un array di N numeri interi
+trova l'indice dell'elemento più piccolo e scambia di posto il primo
+elemento con l'elemento più piccolo
+Per scambiare i due elementi dell'array si può usare una variabile
+di appoggio oppure il comando swap.
+
+6a) Scrivere un programma che legge gli elementi di due array a e b di N numeri
+interi e ricopia in un array c di 2N numeri interi prima gli elementi
+di a poi quelli di b. Ad esempio se a=1 2 3 4 e b=6 7 8 9
+c dovrà contenere 1 2 3 4 6 7 8 9
+
+6b) Scrivere un programma che legge gli elementi di due array a e b di N numeri
+interi e ricopia in un array c di 2N numeri interi in modo alternato gli elementi
+e quelli di b. Ad esempio a=1 2 3 4 e b=6 7 8 9
+c dovrà contenere 1 6 2 7 3 8 4 9
+
+7*) Scrivere un programma che sulla falsa riga dell'esercizio 5b) ordina
+un array di N numeri interi mediante il metodo del selection-sort
+(esercizio molto difficile facoltativo)
+per i che varia da 0 a N-1
+	sia jmin l'indice dell'elemento più piccolo a partire dall'elemento i
+	scambia di posto l'elemento jmin con l'elemento i
+fine-per
+
+8) Scrivere un programma che legge una matrice 3x3 e ne calcola
+il determinante con la regola di Sarrus
+
+9) Scrivere un programma che legge un array (o un vector) di N
+elementi, calcola la media aritmetica e inserisce in un vector
+gli elementi che sono maggiori della media
+
+10) Scrivere un programma che legge una matrice di MxN
+numeri reali definiti con constexpr, calcola
+la somma di ogni riga e infine scrive sullo schermo
+il risultato
+
+11) Scrivere un programma che calcola i primi n numeri
+di Fibonacci. I primi due numeri sono entrambi 1, mentre
+ogni altro numero è la somma dei due numeri che
+lo precedono nella sequenza:
+1 1 2 3 5 8 13 21 34 55 89 ...
+
+12) Scrivere un programma che calcola una funzione
+f a vostra scelta nei punti 0, h, 2h, 3h, ..., (N-1)h,
+(ove h=1/(N-1) e N è una costante o una variabile)
+mette tali valori in un array (o un vector), ne calcola il massimo
+(sia come valore che come posizione) e visualizza
+sullo schermo i risultati
+
+13) Scrivere un programma che legge le cifre binarie di un numero naturale
+(ad esempio una alla volta e inserite in un vector) e che calcola
+il numero e lo visualizza (in base 10).
+Ad esempio se le cifre sono 1 1 0 0 1 il risultato è 25.
+
+14a) Scrivere un programma che legge i coefficienti di un polinomio p in
+un vector e un numero reale x e calcola il valore del polinomio p nel punto x
+
+14b) calcolare p'(x)
+
+14c) calcolare l'integrale definito nell'intervallo [a,b] del polinomio p (in questo caso leggere a e b, ma
+non leggere x)
+
+14d) leggere i coefficienti di due polinomi p1 e p2 e calcolare il polinomio somma
+(attenzione se i due polinomi hanno grado diverso)
+
+14e) leggere i coefficienti di due polinomi p1 e p2 e calcolare il polinomio prodotto
+Ad esempio se i coefficienti sono 1 0 -2  3 (il polinomio è quindi x^3-2x+3)
+e il punto x è 3 il risultato è 3^3-2*3+3 ovvero 24
+
+15) Scrivere un programma che riempe una matrice quadrata di ordine N (ove
+N è una costante definita con constexpr) nel seguente modo:
+gli elementi della diagonale principale sono uguali a 0
+gli elementi al di sopra della diagonale sono 1
+gli elementi al di sotto della diagonale sono -1
+
+16) Scrivere un programma che legge un numero naturale n e controlla
+se n è un numero primo, verificando che non abbia divisori propri
+(un numero d è un divisore proprio di n se d divide n e d non è 1 né n).
+
+17) Scrivere un programma che legge una matrice quadrata di ordine N (ove
+N è una costante definita con constexpr) e calcola il pivot, ossia il
+più grande elemento in valore assoluto.
+Suggerimento: è simile a calcolare il massimo degli elementi di un vector,
+però servono due cicli for
+
+18) Scrivere un programma che legge da tastiera una sequenza di numeri interi (terminata con il valore 0) e la visualizza in ordine inverso
+
+19) Scrivere un programma che legge da tastiera una matrice A di n x n elementi e un numero reale k e calcola la matrice B=A-k*I, ove I è la matrice identità. Ovviamente, n è una costante.
+
+20) Scrivere un programma che legge N numeri reali e controlla se sono ordinati in senso crescente. Suggerimento: contare quanti sono gli elementi minori o uguali al loro predecessore nell’array (o nel vector)
+
+21) Scrivere un programma che legge due sequenze di numeri interi (terminate con 0 o con FINE, a vostro piacimento) e controlla se sono uguali (stessa dimensione e valori identici negli stessi posti)
+
+22) Scrivere un programma che genera a caso un numero intero tra 1 e 100 e poi chiede all’utente di indovinarlo, con un numero massimo di tentativi. Ad ogni tentativo il programma indica se il numero inserito è maggiore, minore o uguale a quello generato. In quest’ultimo caso il programma si ferma dopo essersi congratulato con l’utente. Invece, se l’utente non riesce a vincere, il programma rivela il numero generato.
+Per generare un numero a caso usare int numero=1+time(0)%100;

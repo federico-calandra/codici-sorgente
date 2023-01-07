@@ -1,0 +1,102 @@
+1) Esercizio di riscaldamento
+scrivere un programma che scrive una o più frasi sullo schermo
+
+2) scrivere un programma che legge il raggio di una circonferenza, calcola area e lunghezza della circonferenza e scrive sullo schermo i risultati
+Per avere pi greco si può definire una variabile
+double pi=3.14159;
+oppure
+#include <cmath>
+all'inizio
+e nel programma pi greco è M_PI
+
+3) scrivere un programma che legge da tastiera i cateti di un triangolo
+rettangolo, calcola area e perimetro e scrive sullo schermo
+i risultati
+la radice quadrata è sqrt
+
+4) scrivere un programma che legge da tastiera l'angolo rispetto al suolo e
+la velocità iniziale di un proiettile che viene sparato in aria,
+calcola la distanza in cui ricade a terra (gittata)
+e il tempo che impiega, e scrive i risultati sullo schermo.
+La funzione seno è sin e il coseno è cos.
+Entrambe vogliono l'argomento in radianti tra parentesi.
+
+5) Scrivere un programma che legge due numeri reali, trova il più grande
+tra i due e scrive sullo schermo il risultato
+
+6) Scrivere un programma che legge la temperatura t dell'acqua, calcolo in quale stato si trova (liquido,
+solido o gassoso) e scrive sullo schermo il risultato
+
+7) Scrivere un programma che chiede all'utente quale delle 3 forme della legge di Ohm vuole usare
+   1. I=V/R
+   2. V=RI
+   3. R=V/I
+Una volta scelto, il programma chiede il valore delle due grandezze a sinistra e calcola il valore
+della grandezza restante e lo scrive sullo schermo
+
+8) Scrivere un programma che legge i tre coefficienti a,b,c di un'equazione di II grado, trova le
+eventuali soluzioni e le scrive sullo schermo (se non ha soluzioni reali, scrive che non ha soluzioni reali)
+
+9) Scrivere un programma che legge un numero naturale m compreso tra 1 e 12, calcola quanti giorni
+ha il mese numero m (supponendo che l'anno non è bisestile) e scrive sullo schermo il risultato
+
+10) Scrivere un programma che legge tre numeri reali e stabilisce se possono essere i lati di un triangolo
+oppure no e in caso affermativo determina quale tipo di triangolo (equilatero, isoscele o scaleno
+
+11) Scrivere un programma che legge i coefficienti di due rette del piano nella forma y=mx+q e
+stabilisce se le due rette sono parallele, incidenti ed eventualmente perpendicolari
+
+12) Scrivere un programma che calcola la somma dei quadrati degli inversi dei numeri naturali
+da 1 a n, ove è un valore inserito dall'utente
+
+13) Scrivere un programma che calcola il coefficiente binomiale "n su k" di due numeri
+naturali n e k, con 0<=k<=n, inseriti dall'utente
+ n          n!            n(n-1)(n-2)...(n-k+1)
+( ) = -----------------= ----------------------
+ k      k!  (n-k)!        1  2    3        k
+
+al posto di
+int n
+si può usare
+unsigned int n
+
+14) Scrivere un programma che calcola in modo approssimato un integrale definito
+usando il metodo dei rettangoli.
+Si supoonga che la funzione da integrare sia x al quadrato.
+Il programma richiede all'utente a,b e n (il numero di rettangoli).
+L'integrale è approssimato mediante la somma delle aree degli n rettangoli.
+Si divide l'intervallo [a,b] in n sottointervalli disgiunti di ampiezza (b-a)/n.
+Ogni rettangolo ha come base un sottointervallo e come altezza il valore della funzione
+nel punto medio del sottointervallo.
+
+15) modificare il programma usando i trapezi al posto dei rettangoli (le basi dei trapezi
+sono i valori della funzione negli estremi dei sottointervalli e l'altezza è s).
+Il valore dell'integrale così approssimato dovrebbe essere più vicino al valore analitico
+rispetto al metodo dei rettangoli (a parità di n)
+
+16) Scrivere un programma che calcola la somma di n numeri reali inseriti dall'utente, ove anche
+n è deciso dall'utente.
+Il trucco è che si deve leggere un numero alla volta e sommarlo al totale.
+
+17) Scrivere un programma che visualizza sullo schermo una tabella con 3 colonne.
+Nella prima colonna ci sono gli angoli da 0 a 90 con passo 5 gradi, nella seconda
+il rispettivo valore del seno e nella terza il valore del coseno.
+
+18) Scrivere un programma che legge x e n e calcola il coseno di x
+usando la formula di Taylor con n termini.
+Mettere un confronto con il coseno calcolato tramite la funzione di libreria
+
+19 base) Scrivere un programma che legge un numero reale x e un numero intero n
+e che calcola x alla n senza usare pow.
+Gestire anche il caso in cui n è minore o uguale a zero.
+
+19 avanzato) Scrivere un programma che legge un numero intero
+r e visualizza al meglio che siete in grado le prime r righe del triangolo di Tartaglia,
+cioè tutti i coefficienti binomiali n su k, con n=0,...,r-1 e k=0,...,n.
+
+20) Scrivere un programma che legge n numeri reali da tastiera, ove n è un numero
+naturale inserito dall'utente, e visualizza alla fine il numero più
+grande.
+Suggerimento: conservare in una variabile il valore più grande inserito
+in quel momento e ad ogni numero letto da tastiera aggiornare tale variabile
+(quando è necessario)

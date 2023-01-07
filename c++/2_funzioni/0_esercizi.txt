@@ -1,0 +1,70 @@
+1) Definire una funzione che dati come parametri i tre coefficienti a,b,c di un'equazione di
+secondo grado restituisce come risultato il numero di soluzioni distinte (0, 1 o 2).
+
+2) Definire una funzione che dati come parametri due array x e w di numeri reali
+e la loro dimensione n (si supponga che i due array abbiano la stessa dimensione)
+restituisce come risultato la media pesata degli elementi di x pesati con i valori
+di w.
+
+3) Scrivere una funzione f che dato come parametro un numero reale x restituisce
+come risultato un valore reale f(x), in cui f è un'espressione nella x a vostro
+piacimento. Scrivere una funzione che dati come parametri a,b,n calcola in modo approssimato l'integrale della funzione f nell'intervallo [a,b] usando il metodo dei trapezi: l'integrale si approssima come somma delle aree di n trapezi.
+Si suddivide [a,b] in n intervallini di uguale ampiezza e le lunghezze delle
+basi sono i valori di f negli estremi degli intervallini.
+Scrivere il main che legge i dati del problema, chiama la funzione e scrive
+sullo schermo il risultato.
+4a) Scrivere una funzione che dato come parametro un numero naturale n
+restituisce true se n è un numero primo.
+Scrivere il main che legge i dati del problema, chiama la funzione e scrive
+sullo schermo il risultato.
+
+4b) Scrivere un programma che usa la funzione dell'esercizio 4a) e
+conta quanti sono i numeri primi in un intervallo di numeri interi [n1,n2],
+ove n1 e n2 sono inseriti dall'utente
+Volendo, definire una funzione che svolge il conteggio dati n1 e n2.
+
+5) Definire una funzione che dati come parametri un array di numeri interi
+e la sua dimensione, modifica l'array scambiando di posto il primo
+elemento con l'elemento più piccolo. La funzione non avendo risultati deve essere di tipo void.
+Scrivere il main che legge i dati del problema, chiama la funzione e scrive
+sullo schermo il nuovo contenuto dell'array.
+
+6).( Scrivere un programma composto da tre funzioni, la prima legge un vector di numeri reali, la seconda scrive sullo schermo un
+vector di numeri reali e la terza ha come parametri due vector u1 e u2 di numeri reali e due coefficienti a1 e a2 e restituisce
+come risultato la combinazione lineare a1 u1 + a2 u2.
+
+Nel caso in cui u1 e u2 non hanno la stessa dimensione, restituire il vector vuoto.
+
+Definire il main che legge i due vector e i due coefficienti, calcola la combinazione lineare e scrive sullo schermo il risultato.
+
+7). Definire una funzione che dato un numero naturale n restituisce come risultato la conversione di n in base 2.
+Una prima
+possibilità è quella di restituire un vector di numeri interi che conterrà le cifre binarie di n.
+L’altra possibilità è di restituire una stringa.
+Per convertire n in base 2 è sufficiente calcolare le divisioni ripetute di n per 2, fino a ottenere 0 come quoziente e di
+conservarsi i resti. I resti delle divisioni per 2 sono le cifre binarie di n in senso inverso.
+
+8) Definire una funzione che data come parametro una matrice di NxN numeri reali restituisce true se la matrice è diagonale,
+false altrimenti. N è ovviamente una costante (definita con constexpr).
+
+9) Definire una funzione che dati come parametri un vector di interi b restituisce come risultato un vector di interi r che
+ha il doppio del numero n di elementi di b: i primi n elementi di r sono quelli di b nello stesso ordine, gli altri n sono
+quelli di b in ordine inverso. Ad esempio se b=(1,2,3,4), allora il risultato è (1,2,3,4,4,3,2,1).
+
+10)  Scrivere un programma che gestisce un elenco di utenti di una rete telefonica. Per ogni utente si deve memorizzare
+il numero di telefono (che è una stringa) e il numero di secondi trascorsi nelle chiamate inviate. Il programma deve
+ a) definire un’opportuna struttura dati per memorizzare i dati
+ b) prevedere una funzione che, dato come parametro una stringa num, inserisce un nuovo utente con numero di telefono num e
+    che all’inizio avrà durata delle chiamate fatte pari a 0
+ c) prevedere una funzione che scrive sullo schermo tutti i dati
+ d) prevedere una funzione che, dati come parametri un numero intero d e una stringa num, aggiorna il dato dell’utente
+    che ha numero num sommando d alla durata delle chiamate fatte.
+Il main va organizzato con un menù che permette ripetutamente di scegliere le 3 funzioni oppure di terminare il programma.
+
+11) Scrivere un programma che implementa una piccola calcolatrice con i numeri complessi: il programma deve leggere un primo numero
+complesso, l’operazione da eseguire (+, -, *, /) e il secondo numero complesso.
+Il programma deve svolgere mediante opportune funzioni l’operazione indicata e scrivere sullo schermo il risultato.
+Poi deve chiedere se l’utente vuole continuare.
+
+12) Scrivere un programma che implementa un programma che permette all’utente di svolgere alcune operazioni sui vettori di R3:
+somma, sottrazione, moltiplicazione per uno scalare, prodotto scalare e prodotto vettoriale.

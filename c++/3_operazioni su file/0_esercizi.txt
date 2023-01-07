@@ -1,0 +1,19 @@
+1)  Scrivere un programma che legge un insieme di dati da un file. L’insieme è composto da tre colonne separate da virgole. Ogni riga corrisponde ai risultati di un esperimento: nella prima colonna c’è un numero progressivo, nella seconda colonna c’è il tempo in secondi e nella terza colonna c’è una lunghezza in cm.
+Il programma deve scrivere sullo schermo i seguenti dati
+    a) Numero di righe lette
+    b) Media e deviazione standard del tempo
+    c) Media e deviazione standard della lunghezza
+    d) Coefficienti della retta di regressione tra lunghezza e tempo
+
+2) Scrivere un programma che scrive su file i valori tabulati di una funzione f a vostro piacimento: l’utente inserisce i valori a e b come estremi di un intervallo, il numero di punti N in [a,b] e il nome del file. Il programma deve calcolare il valore della funzione in N punti di [a,b] equispaziati  e scrive sul file due colonne: nella prima i valori della x, nella seconda i valori di f(x).
+Aprire il file con Excel (o con Python) e fare il grafico di f usando i dati del file.
+
+3) Scrivere un programma che legge i dati da un primo file (il nome indicato dall’utente) contenente una sequenza di numeri reali e che scrive in un secondo file (il nome indicato dall’utente) solo i numeri maggiori della media.
+
+4) Scrivere un programma che legge un file contenente i dati degli incassi giornalieri di un negozio
+negli ultimi mesi.
+Il programma deve calcolare la mediana degli incassi.
+
+5) Scrivere un programma che legge un file contenente i voti ottenuti dagli studenti di
+un corso di laurea relativamente ad un singolo esame.
+Il programma deve trovare il voto più frequente.
