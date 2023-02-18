@@ -1,4 +1,4 @@
-/* comment */
+/*  */
 
 #include <iostream>
 //#include <cmath>
